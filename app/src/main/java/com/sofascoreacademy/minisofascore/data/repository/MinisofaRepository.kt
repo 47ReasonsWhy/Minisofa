@@ -31,6 +31,8 @@ class MinisofaRepository(application: Application) {
         load = { sportDao.getSports() }
     )
 
+    suspend fun fetchSportsFromNetwork() = safeResponse { api.getSports() }
+
     suspend fun fetchEvents(sportId: Int, sportSlug: String, date: String) = repoResource(
         shouldFetch = { true },
         fetch = { safeResponse { api.getEvents(sportSlug, date) } },
@@ -73,6 +75,8 @@ class MinisofaRepository(application: Application) {
                 },
         load = { eventDao.getEventsWithTeamsAndTournamentBySportIdAndDate(sportId, date) }
     )
+
+    suspend fun fetchEventsFromNetwork(sportSlug: String, date: String) = safeResponse { api.getEvents(sportSlug, date) }
 
     data class EventsFetchInterResult(
         val events: List<Event>,

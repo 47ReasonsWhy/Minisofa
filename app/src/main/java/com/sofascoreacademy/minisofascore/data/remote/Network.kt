@@ -28,13 +28,8 @@ object Network {
 
 
     fun getInstance(): ApiService {
-        if (INSTANCE == null) {
-            synchronized(this) {
-                if (INSTANCE == null) {
-                    INSTANCE = retrofit.create(ApiService::class.java)
-                }
-            }
+        return INSTANCE ?: synchronized(this) {
+            INSTANCE ?: retrofit.create(ApiService::class.java).also { INSTANCE = it }
         }
-        return INSTANCE!!
     }
 }

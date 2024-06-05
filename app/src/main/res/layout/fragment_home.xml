@@ -6,60 +6,66 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:id="@+id/home_header"
+        android:id="@+id/toolbar_home"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/tl_sports"
-        android:background="?colorPrimary"
-        >
+        app:layout_constraintBottom_toTopOf="@id/tl_sports" >
 
-        <ImageView
-            android:layout_width="132dp"
-            android:layout_height="20dp"
-            android:src="@drawable/logo_sofascore"
-            android:contentDescription="@string/logo_sofascore"
-            android:id="@+id/iw_logo_sofascore"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginVertical="14dp"
-            app:tint="?colorOnPrimary"
-            />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/cl_toolbar_home"
+            android:background="?colorPrimary" >
 
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/icon_settings"
-            android:contentDescription="@string/settings"
-            android:id="@+id/iw_icon_settings"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginHorizontal="12dp"
-            android:layout_marginVertical="12dp"
-            app:tint="?colorOnPrimary"
-            />
+            <ImageView
+                android:layout_width="132dp"
+                android:layout_height="20dp"
+                android:src="@drawable/logo_sofascore"
+                android:contentDescription="@string/logo_sofascore"
+                android:id="@+id/iw_logo_sofascore"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="14dp"
+                app:tint="?colorOnPrimary"
+                />
 
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/icon_leagues"
-            android:contentDescription="@string/leagues"
-            android:id="@+id/iw_icon_leagues"
-            app:layout_constraintEnd_toStartOf="@id/iw_icon_settings"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginHorizontal="12dp"
-            android:layout_marginVertical="12dp"
-            app:tint="?colorOnPrimary"
-            />
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/icon_settings"
+                android:contentDescription="@string/settings"
+                android:id="@+id/iw_icon_settings"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginVertical="12dp"
+                app:tint="?colorOnPrimary"
+                />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/icon_leagues"
+                android:contentDescription="@string/leagues"
+                android:id="@+id/iw_icon_leagues"
+                app:layout_constraintEnd_toStartOf="@id/iw_icon_settings"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginVertical="12dp"
+                app:tint="?colorOnPrimary"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
 
     <ProgressBar
         android:layout_width="48dp"
@@ -90,7 +96,7 @@
         android:id="@+id/tl_sports"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/home_header"
+        app:layout_constraintTop_toTopOf="@id/toolbar_home"
         app:layout_constraintBottom_toTopOf="@id/vp_for_sport"
         android:background="?colorPrimary"
         app:tabIndicatorColor="?colorOnPrimary"

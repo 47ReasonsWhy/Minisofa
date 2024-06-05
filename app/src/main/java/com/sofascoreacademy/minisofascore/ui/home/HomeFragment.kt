@@ -55,7 +55,6 @@ class HomeFragment : Fragment() {
                     binding.tlSports.visibility = View.VISIBLE
                     binding.vpForSport.apply {
                         adapter = SportsViewPagerAdapter(this@HomeFragment, it.data)
-                        isNestedScrollingEnabled = true
                         visibility = View.VISIBLE
                     }
                     TabLayoutMediator(binding.tlSports, binding.vpForSport) { tab, position ->

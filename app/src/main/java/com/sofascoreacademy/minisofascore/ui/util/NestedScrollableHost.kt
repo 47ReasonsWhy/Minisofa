@@ -6,6 +6,7 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewConfiguration
 import android.widget.FrameLayout
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.viewpager2.widget.ViewPager2
 import androidx.viewpager2.widget.ViewPager2.ORIENTATION_HORIZONTAL
 import kotlin.math.absoluteValue
@@ -53,7 +54,12 @@ class NestedScrollableHost : FrameLayout {
             return v as? ViewPager2
         }
 
-    private val child: View? get() = if (childCount > 0) getChildAt(0) else null
+    /*
+    previously "if (childCount > 0) getChildAt(0) else null"
+    but adapted to our project at
+    app/src/main/res/layout/fragment_events_for_sport.xml
+    */
+    private val child: View? get() = (getChildAt(0) as ConstraintLayout).getChildAt(1)
 
     init {
         touchSlop = ViewConfiguration.get(context).scaledTouchSlop

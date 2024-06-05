@@ -14,4 +14,6 @@ class SportsViewPagerAdapter(fragment: Fragment, private val sportList: List<Spo
     override fun createFragment(position: Int): Fragment {
         return EventsForSportFragment.newInstance(sportList[position])
     }
+
+
 }

@@ -63,7 +63,7 @@ class EventsForSportFragment : Fragment() {
             registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
                 override fun onPageSelected(position: Int) {
                     super.onPageSelected(position)
-                    homeViewModel.fetchEventsForSport(sport.id, sport.slug, vpDateMap[position]!!)
+                    homeViewModel.fetchEventsForSport(sport.slug, vpDateMap[position]!!)
                 }
             })
             currentItem = 5

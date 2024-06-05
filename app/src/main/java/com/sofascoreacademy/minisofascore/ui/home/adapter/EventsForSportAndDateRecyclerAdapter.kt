@@ -8,8 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.sofascoreacademy.minisofascore.data.local.entity.EventWithTeamsAndTournament
 import com.sofascoreacademy.minisofascore.data.local.entity.Tournament
-import com.sofascoreacademy.minisofascore.databinding.FragmentEventHeaderBinding
-import com.sofascoreacademy.minisofascore.databinding.FragmentEventItemBinding
+import com.sofascoreacademy.minisofascore.databinding.ItemEventHeaderBinding
+import com.sofascoreacademy.minisofascore.databinding.ItemEventItemBinding
 
 class EventsForSportAndDateRecyclerAdapter(context: Context) : RecyclerView.Adapter<ViewHolder>() {
 
@@ -29,11 +29,11 @@ class EventsForSportAndDateRecyclerAdapter(context: Context) : RecyclerView.Adap
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return when (viewType) {
             EventListItem.ViewType.EVENT_ITEM.ordinal -> {
-                val binding = FragmentEventItemBinding.inflate(inflater, parent, false)
+                val binding = ItemEventItemBinding.inflate(inflater, parent, false)
                 EventItemViewHolder(binding)
             }
             EventListItem.ViewType.HEADER_ITEM.ordinal -> {
-                val binding = FragmentEventHeaderBinding.inflate(inflater, parent, false)
+                val binding = ItemEventHeaderBinding.inflate(inflater, parent, false)
                 HeaderItemViewHolder(binding)
             }
             else -> throw IllegalArgumentException("Invalid view type")
@@ -64,14 +64,14 @@ class EventsForSportAndDateRecyclerAdapter(context: Context) : RecyclerView.Adap
         diffResult.dispatchUpdatesTo(this)
     }
 
-    inner class HeaderItemViewHolder(private val binding: FragmentEventHeaderBinding) : ViewHolder(binding.root) {
+    inner class HeaderItemViewHolder(private val binding: ItemEventHeaderBinding) : ViewHolder(binding.root) {
         fun bind(tournament: Tournament) {
             binding.tvCountryName.text = tournament.countryId.toString()
             binding.tvLeagueName.text = tournament.name
         }
     }
 
-    inner class EventItemViewHolder(private val binding: FragmentEventItemBinding) : ViewHolder(binding.root) {
+    inner class EventItemViewHolder(private val binding: ItemEventItemBinding) : ViewHolder(binding.root) {
         fun bind(event: EventWithTeamsAndTournament) {
             binding.apply {
                 tvStartTime.text = event.event.startTime
