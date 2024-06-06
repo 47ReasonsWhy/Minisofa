@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MiniSofascore</string>
+    <string name="app_name">Minisofa</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
@@ -11,4 +11,7 @@
     <string name="no_events">No events for selected sport and date</string>
     <string name="arrow_right">Arrow right</string>
     <string name="today">Today</string>
+    <string name="tournament_logo">Tournament logo</string>
+    <string name="home_team_logo">Home team logo</string>
+    <string name="away_team_logo">Away team logo</string>
 </resources>

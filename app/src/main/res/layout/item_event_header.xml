@@ -2,40 +2,66 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="56dp"
+
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:id="@+id/v_separator"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="?colorOnSurfaceVariant"
+        />
+
+    <ImageView
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:id="@+id/iv_tournament_logo"
+        android:contentDescription="@string/tournament_logo"
+        app:layout_constraintTop_toBottomOf="@+id/v_separator"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tv_country_name"
+        android:layout_marginHorizontal="16dp"
+        />
 
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/tv_country_name"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/v_separator"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="80dp"
+        app:layout_constraintStart_toEndOf="@+id/iv_tournament_logo"
         android:textSize="14sp"
         android:lineHeight="16sp"
+        android:layout_marginHorizontal="16dp"
+        android:textColor="?colorOnSurface"
         />
 
     <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/iv_arrow_right"
         android:src="@drawable/baseline_arrow_right_24"
         android:contentDescription="@string/arrow_right"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/v_separator"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tv_country_name"
+        app:tint="?colorOnSurfaceVariant"
         />
 
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/tv_league_name"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/v_separator"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/iv_arrow_right"
         android:textSize="14sp"
         android:lineHeight="16sp"
+        android:textColor="?colorOnSurfaceVariant"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

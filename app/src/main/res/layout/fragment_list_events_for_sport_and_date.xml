@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="?colorSurface"
+    >
 
-    <androidx.recyclerview.widget.RecyclerView
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/rw_events_for_sport_and_date"
-        android:visibility="gone"
-        />
+        android:id="@+id/srl__container">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/rw_events_for_sport_and_date"
+            android:visibility="gone"
+            />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <TextView
         android:layout_width="match_parent"
@@ -17,6 +26,7 @@
         android:text="@string/no_events"
         android:gravity="center"
         android:visibility="gone"
+        android:textColor="?colorOnSurface"
         />
 
     <TextView
@@ -25,6 +35,7 @@
         android:id="@+id/tv_no_connection_loading_events"
         android:text="@string/no_connection_loading_events"
         android:gravity="center"
+        android:textColor="?colorOnSurface"
         />
 
     <ProgressBar

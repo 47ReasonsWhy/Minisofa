@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace = "com.sofascoreacademy.minisofascore"
+    namespace = "com.sofascoreacademy.minisofa"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.sofascoreacademy.minisofascore"
+        applicationId = "com.sofascoreacademy.minisofa"
         minSdk = 28
         targetSdk = 34
         versionCode = 1
@@ -57,12 +57,15 @@ dependencies {
 
     implementation(libs.androidx.room.ktx)
     implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.swiperefreshlayout)
     ksp(libs.androidx.room.compiler)
 
     implementation(libs.retrofit.client)
     implementation(libs.retrofit.gson)
     implementation(libs.okHttp.client)
     implementation(libs.okHttp.logging)
+
+    implementation(libs.bumptech.glide)
 
     testImplementation(libs.junit)
 

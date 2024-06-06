@@ -1,4 +1,4 @@
-package com.sofascoreacademy.minisofascore.ui.home.fragment
+package com.sofascoreacademy.minisofa.ui.home.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,12 +7,23 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.sofascoreacademy.minisofascore.data.repository.Resource
-import com.sofascoreacademy.minisofascore.databinding.FragmentListEventsForSportAndDateBinding
-import com.sofascoreacademy.minisofascore.ui.home.HomeViewModel
-import com.sofascoreacademy.minisofascore.ui.home.adapter.EventsForSportAndDateRecyclerAdapter
+import com.sofascoreacademy.minisofa.data.repository.Resource
+import com.sofascoreacademy.minisofa.databinding.FragmentListEventsForSportAndDateBinding
+import com.sofascoreacademy.minisofa.ui.home.HomeViewModel
+import com.sofascoreacademy.minisofa.ui.home.adapter.EventsForSportAndDateRecyclerAdapter
 
 class EventsForSportAndDateFragment : Fragment() {
+
+    companion object {
+        fun newInstance(sportSlug: String, date: String): EventsForSportAndDateFragment {
+            return EventsForSportAndDateFragment().apply {
+                arguments = Bundle().apply {
+                    putString("sportSlug", sportSlug)
+                    putString("date", date)
+                }
+            }
+        }
+    }
 
     private var _binding: FragmentListEventsForSportAndDateBinding? = null
 
@@ -40,9 +51,19 @@ class EventsForSportAndDateFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
+        val sportSlug = arguments?.getString("sportSlug") ?: ""
+        val date = arguments?.getString("date") ?: ""
+
         binding.rwEventsForSportAndDate.apply {
             adapter = eventListAdapter
             layoutManager = LinearLayoutManager(requireContext())
+        }
+
+        binding.srlContainer.apply {
+            setOnRefreshListener {
+                homeViewModel.getEvents(sportSlug, date)
+                isRefreshing = false
+            }
         }
 
         events.observe(viewLifecycleOwner) { binding.apply {

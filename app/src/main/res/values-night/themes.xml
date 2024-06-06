@@ -1,16 +1,30 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="Theme.MiniSofascore" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.MiniSofa" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_200</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorPrimary">#849afd</item>
+        <item name="colorPrimaryVariant">#afbeff</item>
+        <item name="android:textColorHighlight">#2d385c</item>
+        <item name="colorOnPrimary">#ffffff</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_200</item>
-        <item name="colorOnSecondary">@color/black</item>
+        <item name="colorSecondary">#3a3a39</item>
+        <item name="colorSecondaryVariant">#404039</item>
+<!--    <item name="colorSecondaryHighlight">#171616</item> -->
+        <item name="colorOnSecondary">#99ffffff</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+
+
         <!-- Customize your theme here. -->
+
+        <item name="colorPrimarySurface">#101114</item>
+        <item name="colorSurface">#21242d</item>
+        <item name="colorSurfaceVariant">#66000000</item>
+
+        <item name="colorOnSurface">#ffffff</item>
+        <item name="colorOnSurfaceVariant">#66ffffff</item>
+
+        <item name="colorSpecificLive">#f14b4b</item>
+
     </style>
 </resources>

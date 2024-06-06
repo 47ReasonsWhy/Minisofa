@@ -1,4 +1,4 @@
-package com.sofascoreacademy.minisofascore.ui.home.fragment
+package com.sofascoreacademy.minisofa.ui.home.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,10 +9,10 @@ import androidx.fragment.app.activityViewModels
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
-import com.sofascoreacademy.minisofascore.data.local.entity.Sport
-import com.sofascoreacademy.minisofascore.databinding.FragmentEventsForSportBinding
-import com.sofascoreacademy.minisofascore.ui.home.HomeViewModel
-import com.sofascoreacademy.minisofascore.ui.home.adapter.EventsForSportViewPagerAdapter
+import com.sofascoreacademy.minisofa.data.model.Sport
+import com.sofascoreacademy.minisofa.databinding.FragmentEventsForSportBinding
+import com.sofascoreacademy.minisofa.ui.home.HomeViewModel
+import com.sofascoreacademy.minisofa.ui.home.adapter.EventsForSportViewPagerAdapter
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -56,14 +56,14 @@ class EventsForSportFragment : Fragment() {
 
         val sport = arguments?.getSerializable(ARG_SPORT) as Sport
 
-        val eventsForSportViewPagerAdapter = EventsForSportViewPagerAdapter(this, vpDateMap)
+        val eventsForSportViewPagerAdapter = EventsForSportViewPagerAdapter(this, sport.slug, vpDateMap)
         binding.vpForSportAndDate.apply{
             isNestedScrollingEnabled = true
             adapter = eventsForSportViewPagerAdapter
             registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
                 override fun onPageSelected(position: Int) {
                     super.onPageSelected(position)
-                    homeViewModel.fetchEventsForSport(sport.slug, vpDateMap[position]!!)
+                    homeViewModel.getEvents(sport.slug, vpDateMap[position]!!)
                 }
             })
             currentItem = 5
