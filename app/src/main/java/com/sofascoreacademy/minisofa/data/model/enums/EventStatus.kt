@@ -1,4 +1,4 @@
-package com.sofascoreacademy.minisofa.data.model.entity.enums
+package com.sofascoreacademy.minisofa.data.model.enums
 
 enum class EventStatus {
 

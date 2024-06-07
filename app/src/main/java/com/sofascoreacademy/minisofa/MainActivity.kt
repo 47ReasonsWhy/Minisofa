@@ -1,22 +1,18 @@
 package com.sofascoreacademy.minisofa
 
 import android.os.Bundle
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.sofascoreacademy.minisofa.data.model.Event
 import com.sofascoreacademy.minisofa.databinding.ActivityMainBinding
 import com.sofascoreacademy.minisofa.ui.home.HomeFragmentDirections
-import com.sofascoreacademy.minisofa.ui.home.HomeViewModel
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
     private lateinit var navController: NavController
-
-    val sharedViewModel: HomeViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -1,4 +1,5 @@
 [versions]
+#noinspection AndroidGradlePluginVersion
 agp = "8.4.0"
 kotlin = "1.9.23"
 coreKtx = "1.13.1"
@@ -45,6 +46,7 @@ retrofit-gson = { group = "com.squareup.retrofit2", name = "converter-gson", ver
 okHttp-client = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okHttpVersion" }
 okHttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okHttpVersion" }
 bumptech-glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glideVersion" }
+bumptech-glide-compiler = { group = "com.github.bumptech.glide", name = "compiler", version.ref = "glideVersion" }
 androidx-swiperefreshlayout = { group = "androidx.swiperefreshlayout", name = "swiperefreshlayout", version.ref = "swipeRefreshLayoutVersion" }
 
 [plugins]

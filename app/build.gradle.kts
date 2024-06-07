@@ -66,6 +66,7 @@ dependencies {
     implementation(libs.okHttp.logging)
 
     implementation(libs.bumptech.glide)
+    annotationProcessor(libs.bumptech.glide.compiler)
 
     testImplementation(libs.junit)
 
