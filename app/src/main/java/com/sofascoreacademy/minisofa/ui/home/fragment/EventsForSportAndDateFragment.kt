@@ -7,10 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.sofascoreacademy.minisofa.MainActivity
 import com.sofascoreacademy.minisofa.data.repository.Resource
 import com.sofascoreacademy.minisofa.databinding.FragmentListEventsForSportAndDateBinding
 import com.sofascoreacademy.minisofa.ui.home.HomeViewModel
-import com.sofascoreacademy.minisofa.ui.home.adapter.EventsForSportAndDateRecyclerAdapter
+import com.sofascoreacademy.minisofa.ui.home.adapter.recycler.EventListRecyclerAdapter
 
 class EventsForSportAndDateFragment : Fragment() {
 
@@ -27,15 +28,11 @@ class EventsForSportAndDateFragment : Fragment() {
 
     private var _binding: FragmentListEventsForSportAndDateBinding? = null
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     private val homeViewModel by activityViewModels<HomeViewModel>()
 
-    private val events by lazy { homeViewModel.events }
-
-    private val eventListAdapter by lazy { EventsForSportAndDateRecyclerAdapter(requireContext()) }
+    private val eventListAdapter by lazy { EventListRecyclerAdapter(requireContext()) }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -61,12 +58,16 @@ class EventsForSportAndDateFragment : Fragment() {
 
         binding.srlContainer.apply {
             setOnRefreshListener {
-                homeViewModel.getEvents(sportSlug, date)
+                homeViewModel.getEvents(
+                    sportSlug,
+                    date,
+                    (requireActivity() as MainActivity)::navigateToEventDetails
+                )
                 isRefreshing = false
             }
         }
 
-        events.observe(viewLifecycleOwner) { binding.apply {
+        homeViewModel.events.observe(viewLifecycleOwner) { binding.apply {
             when (it) {
                 is Resource.Failure -> {
                     pbLoading.visibility = View.GONE
@@ -102,5 +103,11 @@ class EventsForSportAndDateFragment : Fragment() {
                 }
             }
         }}
+
+        homeViewModel.getEvents(
+            sportSlug,
+            date,
+            (requireActivity() as MainActivity)::navigateToEventDetails
+        )
     }
 }

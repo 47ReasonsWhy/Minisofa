@@ -9,10 +9,11 @@ import androidx.fragment.app.activityViewModels
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import com.sofascoreacademy.minisofa.MainActivity
 import com.sofascoreacademy.minisofa.data.model.Sport
 import com.sofascoreacademy.minisofa.databinding.FragmentEventsForSportBinding
 import com.sofascoreacademy.minisofa.ui.home.HomeViewModel
-import com.sofascoreacademy.minisofa.ui.home.adapter.EventsForSportViewPagerAdapter
+import com.sofascoreacademy.minisofa.ui.home.adapter.viewpager.EventsForSportViewPagerAdapter
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -29,15 +30,16 @@ class EventsForSportFragment : Fragment() {
                 }
             }
         }
+
+        private const val KEY_CURRENT_ITEM = "current_item"
     }
 
     private var _binding: FragmentEventsForSportBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     private val homeViewModel by activityViewModels<HomeViewModel>()
+
+    private lateinit var sport: Sport
 
 
     override fun onCreateView(
@@ -51,22 +53,27 @@ class EventsForSportFragment : Fragment() {
         return binding.root
     }
 
-    @Suppress("DEPRECATION")
+    @Suppress("Deprecation")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        val sport = arguments?.getSerializable(ARG_SPORT) as Sport
+        sport = arguments?.getSerializable(ARG_SPORT) as Sport
 
         val eventsForSportViewPagerAdapter = EventsForSportViewPagerAdapter(this, sport.slug, vpDateMap)
+
         binding.vpForSportAndDate.apply{
             isNestedScrollingEnabled = true
             adapter = eventsForSportViewPagerAdapter
             registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
                 override fun onPageSelected(position: Int) {
                     super.onPageSelected(position)
-                    homeViewModel.getEvents(sport.slug, vpDateMap[position]!!)
+                    homeViewModel.getEvents(
+                        sport.slug,
+                        vpDateMap[position]!!,
+                        (requireActivity() as MainActivity)::navigateToEventDetails
+                    )
                 }
             })
-            currentItem = 5
+            currentItem = savedInstanceState?.getInt(KEY_CURRENT_ITEM) ?: 5
         }
         binding.tlDates.apply {
             tabMode = TabLayout.MODE_SCROLLABLE
@@ -75,6 +82,12 @@ class EventsForSportFragment : Fragment() {
             tab.text = tabDateMap[position]
         }.attach()
     }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        if (_binding != null) outState.putInt(KEY_CURRENT_ITEM, binding.vpForSportAndDate.currentItem)
+    }
+
 
     private val tabDateMap: Map<Int, String> = mutableMapOf<Int, String>().also {
         val today = LocalDate.now()

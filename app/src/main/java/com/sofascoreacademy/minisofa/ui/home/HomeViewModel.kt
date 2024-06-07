@@ -7,18 +7,26 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.sofascoreacademy.minisofa.data.model.Country
 import com.sofascoreacademy.minisofa.data.model.Event
+import com.sofascoreacademy.minisofa.data.model.Incident
+import com.sofascoreacademy.minisofa.data.model.Player
 import com.sofascoreacademy.minisofa.data.model.Score
 import com.sofascoreacademy.minisofa.data.model.Sport
 import com.sofascoreacademy.minisofa.data.model.Team
 import com.sofascoreacademy.minisofa.data.model.Tournament
-import com.sofascoreacademy.minisofa.data.model.entity.enums.EventStatus
+import com.sofascoreacademy.minisofa.data.model.enums.CardColor
+import com.sofascoreacademy.minisofa.data.model.enums.EventStatus
 import com.sofascoreacademy.minisofa.data.model.enums.EventWinnerCode
+import com.sofascoreacademy.minisofa.data.model.enums.GoalType
+import com.sofascoreacademy.minisofa.data.model.enums.IncidentType
+import com.sofascoreacademy.minisofa.data.model.enums.TeamSide
 import com.sofascoreacademy.minisofa.data.remote.Result
 import com.sofascoreacademy.minisofa.data.remote.glide.getTeamLogoURL
 import com.sofascoreacademy.minisofa.data.remote.glide.getTournamentLogoURL
 import com.sofascoreacademy.minisofa.data.repository.MinisofaRepository
 import com.sofascoreacademy.minisofa.data.repository.Resource
-import com.sofascoreacademy.minisofa.ui.home.adapter.EventsForSportAndDateRecyclerAdapter
+import com.sofascoreacademy.minisofa.ui.home.adapter.recycler.EventListRecyclerAdapter
+import com.sofascoreacademy.minisofa.ui.home.adapter.recycler.incident.IncidentListItem
+import com.sofascoreacademy.minisofa.ui.home.adapter.recycler.incident.IncidentListItem.Companion.toIncidentItemList
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -28,8 +36,11 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
     private val _sports = MutableLiveData<Resource<List<Sport>>>()
     val sports: LiveData<Resource<List<Sport>>> = _sports
 
-    private val _events = MutableLiveData<Resource<List<EventsForSportAndDateRecyclerAdapter.EventListItem>>>()
-    val events: LiveData<Resource<List<EventsForSportAndDateRecyclerAdapter.EventListItem>>> = _events
+    private val _events = MutableLiveData<Resource<List<EventListRecyclerAdapter.EventListItem>>>()
+    val events: LiveData<Resource<List<EventListRecyclerAdapter.EventListItem>>> = _events
+
+    private val _incidents = MutableLiveData<Resource<List<IncidentListItem>>>()
+    val incidents: LiveData<Resource<List<IncidentListItem>>> = _incidents
 
     private val minisofaRepository = MinisofaRepository()
 
@@ -53,7 +64,7 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun getEvents(sportSlug: String, date: String) {
+    fun getEvents(sportSlug: String, date: String, onClick: (Event) -> Unit) {
         viewModelScope.launch(Dispatchers.IO) {
             _events.postValue(Resource.Loading())
             when (val eventsResult = minisofaRepository.fetchEvents(sportSlug, date)) {
@@ -66,7 +77,7 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
                             event.tournament
                         }.flatMap { (tournament, eventList) ->
                             listOf(
-                                EventsForSportAndDateRecyclerAdapter.EventListItem.HeaderItem(
+                                EventListRecyclerAdapter.EventListItem.HeaderItem(
                                     Tournament(
                                         tournament.id,
                                         tournament.name,
@@ -83,8 +94,8 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
                                         getTournamentLogoURL(tournament.id)
                                     )
                                 ),
-                                *eventList.map { event ->
-                                    EventsForSportAndDateRecyclerAdapter.EventListItem.EventItem(
+                                *(eventList.map { event ->
+                                    EventListRecyclerAdapter.EventListItem.EventItem(
                                         Event(
                                             event.id,
                                             event.slug,
@@ -122,14 +133,8 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
                                                 getTeamLogoURL(event.awayTeam.id)
                                             ),
                                             EventStatus.fromString(event.status),
-                                            if (event.startDate == null) null else event.startDate.substring(
-                                                0,
-                                                10
-                                            ),
-                                            if (event.startDate == null) null else event.startDate.substring(
-                                                11,
-                                                16
-                                            ),
+                                            event.startDate?.substring(0, 10),
+                                            event.startDate?.substring(11, 16),
                                             Score(
                                                 event.homeScore.total,
                                                 event.homeScore.period1,
@@ -152,13 +157,73 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
                                                 )
                                             },
                                             event.round
-                                        )
+                                        ),
+                                        onClick
                                     )
-                                }.toTypedArray()
+                                }).toTypedArray()
                             )
                         }
                     }
                     _events.postValue(Resource.Success(eventList))
+                }
+            }
+        }
+    }
+
+    fun getIncidents(eventId: Int, viewType: IncidentListItem.ViewType) {
+        viewModelScope.launch(Dispatchers.IO) {
+            _incidents.postValue(Resource.Loading())
+            when (val incidentsResult = minisofaRepository.fetchIncidents(eventId)) {
+                is Result.Error -> {
+                    _incidents.postValue(Resource.Failure(incidentsResult.error))
+                }
+                is Result.Success -> {
+                    val incidents = withContext(Dispatchers.Default) {
+                        incidentsResult.data.reversed().map { incident ->
+                            when (IncidentType.fromString(incident.type)) {
+                                IncidentType.CARD -> Incident.Card(
+                                    incident.id,
+                                    Player(
+                                        incident.player?.id ?: -1,
+                                        incident.player?.name ?: "",
+                                        incident.player?.slug ?: "",
+                                        Country(
+                                            incident.player?.country?.id ?: -1,
+                                            incident.player?.country?.name ?: ""
+                                        ),
+                                        incident.player?.position ?: ""
+                                    ),
+                                    incident.teamSide?.let { TeamSide.fromString(it) } ?: TeamSide.AWAY,
+                                    incident.color?.let { CardColor.fromString(it) } ?: CardColor.RED,
+                                    incident.time ?: -1
+                                )
+                                IncidentType.GOAL -> Incident.Goal(
+                                    incident.id,
+                                    Player(
+                                        incident.player?.id ?: -1,
+                                        incident.player?.name ?: "",
+                                        incident.player?.slug ?: "",
+                                        Country(
+                                            incident.player?.country?.id ?: -1,
+                                            incident.player?.country?.name ?: ""
+                                        ),
+                                        incident.player?.position ?: ""
+                                    ),
+                                    incident.scoringTeam?.let { TeamSide.fromString(it) } ?: TeamSide.AWAY,
+                                    incident.homeScore ?: -1,
+                                    incident.awayScore ?: -1,
+                                    incident.goalType?.let { GoalType.fromString(it) } ?: GoalType.PENALTY,
+                                    incident.time ?: -1
+                                )
+                                IncidentType.PERIOD -> Incident.Period(
+                                    incident.id,
+                                    incident.text ?: "",
+                                    incident.time ?: -1
+                                )
+                            }
+                        }.toIncidentItemList(viewType)
+                    }
+                    _incidents.postValue(Resource.Success(incidents))
                 }
             }
         }

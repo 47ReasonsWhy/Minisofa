@@ -12,4 +12,6 @@ class MinisofaRepository {
 
     suspend fun fetchEvents(sportSlug: String, date: String) = safeResponse { api.getEvents(sportSlug, date) }
 
+    suspend fun fetchIncidents(eventId: Int) = safeResponse { api.getIncidents(eventId) }
+
 }
