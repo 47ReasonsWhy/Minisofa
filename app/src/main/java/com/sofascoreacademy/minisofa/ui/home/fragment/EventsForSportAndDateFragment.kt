@@ -76,14 +76,13 @@ class EventsForSportAndDateFragment : Fragment() {
                     tvNoConnectionLoadingEvents.visibility = View.VISIBLE
                 }
                 is Resource.Loading -> {
+                    rwEventsForSportAndDate.visibility = View.VISIBLE
                     if (it.data?.isNotEmpty() == true) {
                         pbLoading.visibility = View.VISIBLE
-                        rwEventsForSportAndDate.visibility = View.VISIBLE
                         tvNoEvents.visibility = View.GONE
                         tvNoConnectionLoadingEvents.visibility = View.GONE
                         eventListAdapter.submitList(it.data)
                     } else {
-                        rwEventsForSportAndDate.visibility = View.GONE
                         tvNoEvents.visibility = View.GONE
                         tvNoConnectionLoadingEvents.visibility = View.GONE
                         pbLoading.visibility = View.VISIBLE
