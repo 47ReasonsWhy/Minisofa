@@ -1,38 +1,28 @@
-package com.sofascoreacademy.minisofa.ui.home.adapter
+package com.sofascoreacademy.minisofa.ui.home.adapter.recycler
 
 import android.content.Context
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.annotation.AttrRes
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
 import com.google.android.material.R.attr.colorOnSurface
 import com.google.android.material.R.attr.colorOnSurfaceVariant
-import com.google.android.material.color.MaterialColors
+import com.sofascoreacademy.minisofa.R
 import com.sofascoreacademy.minisofa.R.attr.colorSpecificLive
 import com.sofascoreacademy.minisofa.data.model.Event
 import com.sofascoreacademy.minisofa.data.model.Tournament
-import com.sofascoreacademy.minisofa.data.model.entity.enums.EventStatus
+import com.sofascoreacademy.minisofa.data.model.enums.EventStatus
 import com.sofascoreacademy.minisofa.data.model.enums.EventWinnerCode
 import com.sofascoreacademy.minisofa.databinding.ItemEventHeaderBinding
 import com.sofascoreacademy.minisofa.databinding.ItemEventItemBinding
+import com.sofascoreacademy.minisofa.ui.util.setTextColorFromAttr
 
-class EventsForSportAndDateRecyclerAdapter(context: Context) : RecyclerView.Adapter<ViewHolder>() {
-
-    fun TextView.setTextColorFromAttr(@AttrRes attr: Int) {
-        setTextColor(MaterialColors.getColor(
-            context,
-            attr,
-            MaterialColors.getColor(context, colorOnSurface, Color.BLACK)
-        ))
-    }
+class EventListRecyclerAdapter(private val context: Context) : RecyclerView.Adapter<ViewHolder>() {
 
     sealed class EventListItem {
-        data class EventItem(val event: Event) : EventListItem()
+        data class EventItem(val event: Event, val onClick: (Event) -> Unit) : EventListItem()
         data class HeaderItem(val tournament: Tournament) : EventListItem()
 
         enum class ViewType {
@@ -60,7 +50,7 @@ class EventsForSportAndDateRecyclerAdapter(context: Context) : RecyclerView.Adap
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         when (val item = items[position]) {
-            is EventListItem.EventItem -> (holder as EventItemViewHolder).bind(item.event)
+            is EventListItem.EventItem -> (holder as EventItemViewHolder).bind(item.event, item.onClick)
             is EventListItem.HeaderItem -> (holder as HeaderItemViewHolder).bind(item.tournament)
         }
     }
@@ -88,32 +78,37 @@ class EventsForSportAndDateRecyclerAdapter(context: Context) : RecyclerView.Adap
             binding.tvLeagueName.text = tournament.name
             Glide.with(binding.root)
                 .load(tournament.logoURL)
+                .placeholder(R.drawable.ic_sofascore)
                 .into(binding.ivTournamentLogo)
         }
     }
 
     inner class EventItemViewHolder(private val binding: ItemEventItemBinding) : ViewHolder(binding.root) {
-        fun bind(event: Event) {
+        fun bind(event: Event, onClick: (Event) -> Unit) {
             binding.apply {
                 tvStartTime.text = event.startTime
-                tvCurrentTime.text = when (event.status) {
+                when (event.status) {
                     EventStatus.NOT_STARTED -> {
                         tvCurrentTime.setTextColorFromAttr(colorOnSurfaceVariant)
-                        "-"
+                        tvCurrentTime.text = "–"
+                        tvHomeTeamScore.text = ""
+                        tvAwayTeamScore.text = ""
                     }
                     EventStatus.IN_PROGRESS -> {
                         tvCurrentTime.setTextColorFromAttr(colorSpecificLive)
-                        event.round.toString() + "'"
+                        tvCurrentTime.text = context.getString(R.string.LIVE)
+                        tvHomeTeamScore.text = event.homeScore.total.toString()
+                        tvAwayTeamScore.text = event.awayScore.total.toString()
                     }
                     EventStatus.FINISHED -> {
                         tvCurrentTime.setTextColorFromAttr(colorOnSurfaceVariant)
-                        "FT"
+                        tvCurrentTime.text = context.getString(R.string.FT)
+                        tvHomeTeamScore.text = event.homeScore.total.toString()
+                        tvAwayTeamScore.text = event.awayScore.total.toString()
                     }
                 }
                 tvHomeTeamName.text = event.homeTeam.name
                 tvAwayTeamName.text = event.awayTeam.name
-                tvHomeTeamScore.text = event.homeScore.total.toString()
-                tvAwayTeamScore.text = event.awayScore.total.toString()
 
                 when (event.winnerCode) {
                     EventWinnerCode.HOME -> {
@@ -148,11 +143,17 @@ class EventsForSportAndDateRecyclerAdapter(context: Context) : RecyclerView.Adap
 
                 Glide.with(binding.root)
                     .load(event.homeTeam.logoURL)
+                    .placeholder(R.drawable.ic_sofascore)
                     .into(ivHomeTeamLogo)
 
                 Glide.with(binding.root)
                     .load(event.awayTeam.logoURL)
+                    .placeholder(R.drawable.ic_sofascore)
                     .into(ivAwayTeamLogo)
+
+                root.setOnClickListener {
+                    onClick(event)
+                }
             }
         }
     }

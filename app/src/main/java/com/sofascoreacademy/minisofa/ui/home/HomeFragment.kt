@@ -1,23 +1,20 @@
 package com.sofascoreacademy.minisofa.ui.home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.google.android.material.tabs.TabLayoutMediator
+import com.sofascoreacademy.minisofa.MainActivity
 import com.sofascoreacademy.minisofa.data.repository.Resource
 import com.sofascoreacademy.minisofa.databinding.FragmentHomeBinding
-import com.sofascoreacademy.minisofa.ui.home.adapter.SportsViewPagerAdapter
+import com.sofascoreacademy.minisofa.ui.home.adapter.viewpager.SportsViewPagerAdapter
 
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     private val homeViewModel by activityViewModels<HomeViewModel>()
@@ -34,37 +31,42 @@ class HomeFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        homeViewModel.sports.observe(viewLifecycleOwner) {
+        homeViewModel.sports.observe(viewLifecycleOwner) { binding.apply {
             when (it) {
                 is Resource.Loading -> {
-                    binding.tlSports.visibility = View.GONE
-                    binding.vpForSport.visibility = View.GONE
-                    binding.tvErrorWhileLoadingSports.visibility = View.GONE
-                    binding.pbLoadingSports.visibility = View.VISIBLE
+                    tlSports.visibility = View.GONE
+                    vpForSport.visibility = View.GONE
+                    tvErrorWhileLoadingSports.visibility = View.GONE
+                    pbLoadingSports.visibility = View.VISIBLE
                 }
+
                 is Resource.Failure -> {
-                    binding.tlSports.visibility = View.GONE
-                    binding.vpForSport.visibility = View.GONE
-                    binding.pbLoadingSports.visibility = View.GONE
-                    binding.tvErrorWhileLoadingSports.visibility = View.VISIBLE
-                    Log.e("HomeFragment", "Sports fetch error: ${it.error}")
+                    tlSports.visibility = View.GONE
+                    vpForSport.visibility = View.GONE
+                    pbLoadingSports.visibility = View.GONE
+                    tvErrorWhileLoadingSports.visibility = View.VISIBLE
                 }
+
                 is Resource.Success -> {
-                    binding.pbLoadingSports.visibility = View.GONE
-                    binding.tvErrorWhileLoadingSports.visibility = View.GONE
-                    binding.tlSports.visibility = View.VISIBLE
-                    binding.vpForSport.apply {
+                    pbLoadingSports.visibility = View.GONE
+                    tvErrorWhileLoadingSports.visibility = View.GONE
+                    tlSports.visibility = View.VISIBLE
+                    vpForSport.apply {
                         adapter = SportsViewPagerAdapter(this@HomeFragment, it.data)
                         visibility = View.VISIBLE
                     }
-                    TabLayoutMediator(binding.tlSports, binding.vpForSport) { tab, position ->
+                    TabLayoutMediator(tlSports, vpForSport) { tab, position ->
                         tab.text = it.data[position].name
                     }.attach()
                 }
             }
-        }
+        }}
 
         homeViewModel.getSports()
+
+        binding.iwIconSettings.setOnClickListener {
+            (requireActivity() as MainActivity).navigateToSettings()
+        }
     }
 
     override fun onDestroyView() {
