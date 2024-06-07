@@ -1,4 +1,4 @@
-package com.sofascoreacademy.minisofa.ui.home.adapter
+package com.sofascoreacademy.minisofa.ui.home.adapter.viewpager
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter

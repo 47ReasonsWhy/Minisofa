@@ -14,31 +14,3 @@ data class EventResponse(
     val winnerCode: String?,
     val round: Int
 )
-
-data class TournamentResponse(
-    val id: Int,
-    val name: String,
-    val slug: String,
-    val sport: SportResponse,
-    val country: CountryResponse
-)
-
-data class CountryResponse(
-    val id: Int,
-    val name: String,
-)
-
-data class TeamResponse(
-    val id: Int,
-    val name: String,
-    val country: CountryResponse
-)
-
-data class ScoreResponse(
-    val total: Int,
-    val period1: Int,
-    val period2: Int,
-    val period3: Int,
-    val period4: Int,
-    val overtime: Int
-)

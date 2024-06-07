@@ -1,6 +1,6 @@
 package com.sofascoreacademy.minisofa.data.model
 
-import com.sofascoreacademy.minisofa.data.model.entity.enums.EventStatus
+import com.sofascoreacademy.minisofa.data.model.enums.EventStatus
 import com.sofascoreacademy.minisofa.data.model.enums.EventWinnerCode
 import java.io.Serializable
 
