@@ -1,4 +1,4 @@
-package com.sofascoreacademy.minisofa.ui.home.fragment
+package com.sofascoreacademy.minisofa.ui.event_details_page.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -17,9 +17,9 @@ import com.sofascoreacademy.minisofa.R.attr.colorSpecificLive
 import com.sofascoreacademy.minisofa.data.model.enums.EventStatus
 import com.sofascoreacademy.minisofa.data.repository.Resource
 import com.sofascoreacademy.minisofa.databinding.FragmentEventDetailsBinding
-import com.sofascoreacademy.minisofa.ui.home.HomeViewModel
-import com.sofascoreacademy.minisofa.ui.home.adapter.recycler.incident.IncidentListItem.Companion.getIncidentViewType
-import com.sofascoreacademy.minisofa.ui.home.adapter.recycler.incident.IncidentListRecyclerAdapter
+import com.sofascoreacademy.minisofa.ui.home_page.HomeViewModel
+import com.sofascoreacademy.minisofa.ui.event_details_page.adapter.IncidentListItem.Companion.getIncidentViewType
+import com.sofascoreacademy.minisofa.ui.event_details_page.adapter.IncidentListRecyclerAdapter
 import com.sofascoreacademy.minisofa.ui.util.setTextColorFromAttr
 
 class EventDetailsFragment : Fragment() {

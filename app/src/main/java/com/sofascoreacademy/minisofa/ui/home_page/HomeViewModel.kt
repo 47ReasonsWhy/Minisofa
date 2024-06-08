@@ -1,4 +1,4 @@
-package com.sofascoreacademy.minisofa.ui.home
+package com.sofascoreacademy.minisofa.ui.home_page
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
@@ -24,9 +24,9 @@ import com.sofascoreacademy.minisofa.data.remote.glide.getTeamLogoURL
 import com.sofascoreacademy.minisofa.data.remote.glide.getTournamentLogoURL
 import com.sofascoreacademy.minisofa.data.repository.MinisofaRepository
 import com.sofascoreacademy.minisofa.data.repository.Resource
-import com.sofascoreacademy.minisofa.ui.home.adapter.recycler.EventListRecyclerAdapter
-import com.sofascoreacademy.minisofa.ui.home.adapter.recycler.incident.IncidentListItem
-import com.sofascoreacademy.minisofa.ui.home.adapter.recycler.incident.IncidentListItem.Companion.toIncidentItemList
+import com.sofascoreacademy.minisofa.ui.home_page.adapter.EventListRecyclerAdapter
+import com.sofascoreacademy.minisofa.ui.event_details_page.adapter.IncidentListItem
+import com.sofascoreacademy.minisofa.ui.event_details_page.adapter.IncidentListItem.Companion.toIncidentItemList
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

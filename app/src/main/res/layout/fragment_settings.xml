@@ -110,9 +110,8 @@
                     android:text="@string/system"
                     android:textSize="16sp"
                     android:textColor="?colorOnSurface"
-                    android:id="@+id/rb_system_default"
+                    android:id="@+id/rb_system"
                     android:buttonTint="?colorPrimary"
-                    android:checked="true"
                     />
 
             </RadioGroup>
@@ -173,7 +172,6 @@
                     android:textColor="?colorOnSurface"
                     android:id="@+id/rb_yyyy_mm_dd"
                     android:buttonTint="?colorPrimary"
-                    android:checked="true"
                     />
 
             </RadioGroup>

@@ -1,4 +1,4 @@
-package com.sofascoreacademy.minisofa.ui.home.fragment
+package com.sofascoreacademy.minisofa.ui.home_page.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,8 +12,8 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.sofascoreacademy.minisofa.MainActivity
 import com.sofascoreacademy.minisofa.data.model.Sport
 import com.sofascoreacademy.minisofa.databinding.FragmentEventsForSportBinding
-import com.sofascoreacademy.minisofa.ui.home.HomeViewModel
-import com.sofascoreacademy.minisofa.ui.home.adapter.viewpager.EventsForSportViewPagerAdapter
+import com.sofascoreacademy.minisofa.ui.home_page.HomeViewModel
+import com.sofascoreacademy.minisofa.ui.home_page.adapter.EventsForSportViewPagerAdapter
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 

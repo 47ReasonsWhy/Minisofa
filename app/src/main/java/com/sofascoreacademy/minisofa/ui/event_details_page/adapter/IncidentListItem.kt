@@ -1,4 +1,4 @@
-package com.sofascoreacademy.minisofa.ui.home.adapter.recycler.incident
+package com.sofascoreacademy.minisofa.ui.event_details_page.adapter
 
 import com.sofascoreacademy.minisofa.data.model.Event
 import com.sofascoreacademy.minisofa.data.model.Incident

@@ -1,4 +1,4 @@
-package com.sofascoreacademy.minisofa.ui.home.fragment
+package com.sofascoreacademy.minisofa.ui.home_page.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,8 +10,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.sofascoreacademy.minisofa.MainActivity
 import com.sofascoreacademy.minisofa.data.repository.Resource
 import com.sofascoreacademy.minisofa.databinding.FragmentListEventsForSportAndDateBinding
-import com.sofascoreacademy.minisofa.ui.home.HomeViewModel
-import com.sofascoreacademy.minisofa.ui.home.adapter.recycler.EventListRecyclerAdapter
+import com.sofascoreacademy.minisofa.ui.home_page.HomeViewModel
+import com.sofascoreacademy.minisofa.ui.home_page.adapter.EventListRecyclerAdapter
 
 class EventsForSportAndDateFragment : Fragment() {
 

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.sofascoreacademy.minisofa.ui.home.HomeFragment"
+        android:name="com.sofascoreacademy.minisofa.ui.home_page.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -27,7 +27,7 @@
     </fragment>
     <fragment
         android:id="@+id/eventDetailsFragment"
-        android:name="com.sofascoreacademy.minisofa.ui.home.fragment.EventDetailsFragment"
+        android:name="com.sofascoreacademy.minisofa.ui.event_details_page.fragment.EventDetailsFragment"
         android:label="EventDetailsFragment" >
         <argument
             android:name="event"
@@ -35,6 +35,6 @@
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.sofascoreacademy.minisofa.ui.home.fragment.SettingsFragment"
+        android:name="com.sofascoreacademy.minisofa.ui.settings.fragment.SettingsFragment"
         android:label="SettingsFragment" />
 </navigation>

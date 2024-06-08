@@ -1,9 +1,9 @@
-package com.sofascoreacademy.minisofa.ui.home.adapter.viewpager
+package com.sofascoreacademy.minisofa.ui.home_page.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.sofascoreacademy.minisofa.data.model.Sport
-import com.sofascoreacademy.minisofa.ui.home.fragment.EventsForSportFragment
+import com.sofascoreacademy.minisofa.ui.home_page.fragment.EventsForSportFragment
 
 class SportsViewPagerAdapter(fragment: Fragment, private val sportList: List<Sport>) : FragmentStateAdapter(fragment) {
 

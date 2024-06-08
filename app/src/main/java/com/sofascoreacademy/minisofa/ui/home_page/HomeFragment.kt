@@ -1,4 +1,4 @@
-package com.sofascoreacademy.minisofa.ui.home
+package com.sofascoreacademy.minisofa.ui.home_page
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,7 +10,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.sofascoreacademy.minisofa.MainActivity
 import com.sofascoreacademy.minisofa.data.repository.Resource
 import com.sofascoreacademy.minisofa.databinding.FragmentHomeBinding
-import com.sofascoreacademy.minisofa.ui.home.adapter.viewpager.SportsViewPagerAdapter
+import com.sofascoreacademy.minisofa.ui.home_page.adapter.SportsViewPagerAdapter
 
 class HomeFragment : Fragment() {
 
