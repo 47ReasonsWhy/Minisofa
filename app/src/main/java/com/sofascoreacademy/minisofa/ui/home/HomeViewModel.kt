@@ -186,7 +186,7 @@ class HomeViewModel(private val application: Application) : AndroidViewModel(app
                                 onTournamentClick
                             )
                         }
-                    }
+                    }.sortedBy { it.tournament.name }
                     _leaguesLiveData.postValue(Resource.Success(leagues))
                 }
             }

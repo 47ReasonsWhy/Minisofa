@@ -10,9 +10,9 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.google.android.material.R.attr.colorOnSurfaceVariant
 import com.sofascoreacademy.minisofa.R
 import com.sofascoreacademy.minisofa.data.model.Incident
-import com.sofascoreacademy.minisofa.data.model.enums.CardColor
-import com.sofascoreacademy.minisofa.data.model.enums.GoalType
-import com.sofascoreacademy.minisofa.data.model.enums.TeamSide
+import com.sofascoreacademy.minisofa.data.model.enum.CardColor
+import com.sofascoreacademy.minisofa.data.model.enum.GoalType
+import com.sofascoreacademy.minisofa.data.model.enum.TeamSide
 import com.sofascoreacademy.minisofa.databinding.ItemIncidentBasketballBinding
 import com.sofascoreacademy.minisofa.databinding.ItemIncidentFootballBinding
 import com.sofascoreacademy.minisofa.databinding.ItemIncidentPeriodBinding
@@ -194,7 +194,7 @@ class IncidentListRecyclerAdapter (val context: Context) : RecyclerView.Adapter<
                                 GoalType.THREE_POINT -> ivIncidentIconHomeBb.setImageResource(R.drawable.ic_num_basketball_incident_3)
                                 else -> throw IllegalArgumentException("Invalid goal type for basketball: ${incident.goalType}")
                             }
-                            vSeparatorLeftBb.setBackgroundColor(getColorFromAttr(colorOnSurfaceVariant, context))
+                            vSeparatorLeftBb.setBackgroundColor(context.getColorFromAttr(colorOnSurfaceVariant))
                             tvScoreHomeBb.text = context.getString(R.string.score, incident.homeScore, incident.awayScore)
                         }
                         TeamSide.AWAY -> {
@@ -208,7 +208,7 @@ class IncidentListRecyclerAdapter (val context: Context) : RecyclerView.Adapter<
                                 GoalType.THREE_POINT -> ivIncidentIconAwayBb.setImageResource(R.drawable.ic_num_basketball_incident_3)
                                 else -> throw IllegalArgumentException("Invalid goal type for basketball: ${incident.goalType}")
                             }
-                            vSeparatorRightBb.setBackgroundColor(getColorFromAttr(colorOnSurfaceVariant, context))
+                            vSeparatorRightBb.setBackgroundColor(context.getColorFromAttr(colorOnSurfaceVariant))
                             tvScoreAwayBb.text = context.getString(R.string.score, incident.homeScore, incident.awayScore)
                         }
                     }

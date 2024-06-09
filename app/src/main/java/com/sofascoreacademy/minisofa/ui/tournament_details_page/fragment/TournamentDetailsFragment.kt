@@ -5,14 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayoutMediator
 import com.sofascoreacademy.minisofa.MainActivity
 import com.sofascoreacademy.minisofa.R
 import com.sofascoreacademy.minisofa.databinding.FragmentTournamentDetailsBinding
-import com.sofascoreacademy.minisofa.ui.home.HomeViewModel
 import com.sofascoreacademy.minisofa.ui.tournament_details_page.adapter.TournamentDetailsViewPagerAdapter
 
 const val ARG_TOURNAMENT = "tournament"
@@ -22,8 +20,6 @@ class TournamentDetailsFragment : Fragment() {
 
     private var _binding: FragmentTournamentDetailsBinding? = null
     private val binding get() = _binding!!
-
-    private val homeViewModel by activityViewModels<HomeViewModel>()
 
     private val args: TournamentDetailsFragmentArgs by navArgs()
 
