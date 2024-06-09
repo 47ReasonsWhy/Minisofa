@@ -18,6 +18,7 @@
         <!-- Customize your theme here. -->
 
         <item name="colorPrimarySurface">#101114</item>
+
         <item name="colorSurface">#21242d</item>
         <item name="colorSurfaceVariant">#66000000</item>
 
