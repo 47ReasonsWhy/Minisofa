@@ -1,4 +1,4 @@
-package com.sofascoreacademy.minisofa.ui.leagues_page.fragment
+package com.sofascoreacademy.minisofa.ui.home.leagues_page.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,8 +10,8 @@ import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sofascoreacademy.minisofa.MainActivity
 import com.sofascoreacademy.minisofa.databinding.FragmentLeaguesBinding
-import com.sofascoreacademy.minisofa.ui.home.HomeViewModel
-import com.sofascoreacademy.minisofa.ui.leagues_page.adapter.LeaguesRecyclerAdapter
+import com.sofascoreacademy.minisofa.MainViewModel
+import com.sofascoreacademy.minisofa.ui.home.leagues_page.adapter.LeaguesRecyclerAdapter
 import com.sofascoreacademy.minisofa.ui.util.processAsListForRecyclerView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -33,7 +33,7 @@ class LeaguesFragment : Fragment() {
     private var _binding: FragmentLeaguesBinding? = null
     private val binding get() = _binding!!
 
-    private val homeViewModel by activityViewModels<HomeViewModel>()
+    private val mainViewModel by activityViewModels<MainViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -56,7 +56,7 @@ class LeaguesFragment : Fragment() {
             adapter = leaguesRecyclerAdapter
         }
 
-        homeViewModel.leaguesLiveData.observe(viewLifecycleOwner) { binding.apply {
+        mainViewModel.leaguesLiveData.observe(viewLifecycleOwner) { binding.apply {
             it.processAsListForRecyclerView(
                 rvLeagues,
                 tvNoLeagues,
@@ -66,7 +66,7 @@ class LeaguesFragment : Fragment() {
             )
         }}
 
-        homeViewModel.apply {
+        mainViewModel.apply {
             viewModelScope.launch(Dispatchers.IO) {
                 fetchLeaguesForSport(sportSlug, (requireActivity() as MainActivity)::navigateToTournamentDetailsFromHome)
             }

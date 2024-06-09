@@ -18,7 +18,7 @@ import com.sofascoreacademy.minisofa.R.attr.colorSpecificLive
 import com.sofascoreacademy.minisofa.data.model.enum.EventStatus
 import com.sofascoreacademy.minisofa.data.repository.Resource
 import com.sofascoreacademy.minisofa.databinding.FragmentEventDetailsBinding
-import com.sofascoreacademy.minisofa.ui.home.HomeViewModel
+import com.sofascoreacademy.minisofa.MainViewModel
 import com.sofascoreacademy.minisofa.ui.event_details_page.adapter.IncidentListItem.Companion.getIncidentViewType
 import com.sofascoreacademy.minisofa.ui.event_details_page.adapter.IncidentListRecyclerAdapter
 import com.sofascoreacademy.minisofa.ui.util.setTextColorFromAttr
@@ -29,9 +29,9 @@ class EventDetailsFragment : Fragment() {
     private var _binding: FragmentEventDetailsBinding? = null
     private val binding get() = _binding!!
 
-    private val homeViewModel by activityViewModels<HomeViewModel>()
+    private val mainViewModel by activityViewModels<MainViewModel>()
 
-    private val incidents by lazy { homeViewModel.incidentsLiveData }
+    private val incidents by lazy { mainViewModel.incidentsLiveData }
 
     private val incidentListAdapter by lazy { IncidentListRecyclerAdapter(requireContext()) }
 
@@ -151,7 +151,7 @@ class EventDetailsFragment : Fragment() {
             }
         }}
 
-        homeViewModel.apply { viewModelScope.launch { fetchIncidentsForEvent(event.id, event.getIncidentViewType()) } }
+        mainViewModel.apply { viewModelScope.launch { fetchIncidentsForEvent(event.id, event.getIncidentViewType()) } }
     }
 
     override fun onDestroyView() {

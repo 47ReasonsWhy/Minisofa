@@ -10,12 +10,13 @@ import androidx.lifecycle.viewModelScope
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import com.sofascoreacademy.minisofa.MainViewModel
 import com.sofascoreacademy.minisofa.MainActivity
 import com.sofascoreacademy.minisofa.R
 import com.sofascoreacademy.minisofa.data.model.Sport
 import com.sofascoreacademy.minisofa.data.repository.Resource
 import com.sofascoreacademy.minisofa.databinding.FragmentHomeBinding
-import com.sofascoreacademy.minisofa.ui.home.adapter.SportsViewPagerAdapter
+import com.sofascoreacademy.minisofa.ui.home.main_list_page.adapter.SportsViewPagerAdapter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -24,7 +25,7 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
-    private val homeViewModel by activityViewModels<HomeViewModel>()
+    private val mainViewModel by activityViewModels<MainViewModel>()
 
     private val sports = mutableListOf<Sport>()
 
@@ -39,7 +40,7 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        homeViewModel.sportsLiveData.observe(viewLifecycleOwner) {
+        mainViewModel.sportsLiveData.observe(viewLifecycleOwner) {
             binding.apply {
                 when (it) {
                     is Resource.Loading -> {
@@ -63,12 +64,12 @@ class HomeFragment : Fragment() {
                         tlSports.tabMode = TabLayout.MODE_FIXED
                         tlSports.visibility = View.VISIBLE
                         vpForSport.apply {
-                            adapter = SportsViewPagerAdapter(this@HomeFragment, it.data, homeViewModel.state)
+                            adapter = SportsViewPagerAdapter(this@HomeFragment, it.data, mainViewModel.state)
                             visibility = View.VISIBLE
                             registerOnPageChangeCallback(loadEventsCallback)
                         }
                         TabLayoutMediator(tlSports, vpForSport) { tab, position ->
-                            if (position in 0..2) tab.setIcon(homeViewModel.sportIconMap[it.data[position].id]!!)
+                            if (position in 0..2) tab.setIcon(mainViewModel.sportIconMap[it.data[position].id]!!)
                             tab.text = it.data[position].name
                         }.attach()
                     }
@@ -76,7 +77,7 @@ class HomeFragment : Fragment() {
             }
         }
 
-        homeViewModel.apply { viewModelScope.launch(Dispatchers.IO) { fetchAllSports() } }
+        mainViewModel.apply { viewModelScope.launch(Dispatchers.IO) { fetchAllSports() } }
 
         binding.apply {
             iwIconSettings.setOnClickListener {
@@ -84,17 +85,17 @@ class HomeFragment : Fragment() {
             }
 
             iwIconLeagues.setOnClickListener {
-                when (homeViewModel.state) {
-                    HomeViewModel.Showing.EVENTS -> {
-                        homeViewModel.state = HomeViewModel.Showing.LEAGUES
-                        vpForSport.adapter = SportsViewPagerAdapter(this@HomeFragment, sports, homeViewModel.state)
+                when (mainViewModel.state) {
+                    MainViewModel.Showing.EVENTS -> {
+                        mainViewModel.state = MainViewModel.Showing.LEAGUES
+                        vpForSport.adapter = SportsViewPagerAdapter(this@HomeFragment, sports, mainViewModel.state)
                         iwIconLeagues.setImageResource(R.drawable.ic_arrow_back)
                         vpForSport.unregisterOnPageChangeCallback(loadEventsCallback)
                         vpForSport.registerOnPageChangeCallback(loadLeaguesCallback)
                     }
-                    HomeViewModel.Showing.LEAGUES -> {
-                        homeViewModel.state = HomeViewModel.Showing.EVENTS
-                        vpForSport.adapter = SportsViewPagerAdapter(this@HomeFragment, sports, homeViewModel.state)
+                    MainViewModel.Showing.LEAGUES -> {
+                        mainViewModel.state = MainViewModel.Showing.EVENTS
+                        vpForSport.adapter = SportsViewPagerAdapter(this@HomeFragment, sports, mainViewModel.state)
                         iwIconLeagues.setImageResource(R.drawable.ic_leagues)
                         vpForSport.unregisterOnPageChangeCallback(loadLeaguesCallback)
                         vpForSport.registerOnPageChangeCallback(loadEventsCallback)
@@ -108,7 +109,7 @@ class HomeFragment : Fragment() {
 
     private val loadEventsCallback = object : ViewPager2.OnPageChangeCallback() {
         override fun onPageSelected(position: Int) {
-            homeViewModel.apply {
+            mainViewModel.apply {
                 viewModelScope.launch(Dispatchers.IO) {
                     fetchEventsForSportAndDate(
                         sports[position].slug,
@@ -123,7 +124,7 @@ class HomeFragment : Fragment() {
 
     private val loadLeaguesCallback = object : ViewPager2.OnPageChangeCallback() {
         override fun onPageSelected(position: Int) {
-            homeViewModel.apply {
+            mainViewModel.apply {
                 viewModelScope.launch(Dispatchers.IO) {
                     fetchLeaguesForSport(sports[position].slug, (requireActivity() as MainActivity)::navigateToTournamentDetailsFromHome)
                 }

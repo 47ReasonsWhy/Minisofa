@@ -17,7 +17,7 @@ import com.sofascoreacademy.minisofa.data.model.Event
 import com.sofascoreacademy.minisofa.data.model.enum.EventStatus
 import com.sofascoreacademy.minisofa.data.model.enum.EventWinnerCode
 import com.sofascoreacademy.minisofa.databinding.ItemEventItemBinding
-import com.sofascoreacademy.minisofa.ui.home.adapter.EventListRecyclerAdapter.EventListItem.EventItem
+import com.sofascoreacademy.minisofa.ui.home.main_list_page.adapter.EventListRecyclerAdapter.EventListItem.EventItem
 import com.sofascoreacademy.minisofa.ui.util.setTextColorFromAttr
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter

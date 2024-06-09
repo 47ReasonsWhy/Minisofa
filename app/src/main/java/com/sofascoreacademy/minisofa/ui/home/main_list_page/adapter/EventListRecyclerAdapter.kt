@@ -1,4 +1,4 @@
-package com.sofascoreacademy.minisofa.ui.home.adapter
+package com.sofascoreacademy.minisofa.ui.home.main_list_page.adapter
 
 import android.content.Context
 import android.view.LayoutInflater

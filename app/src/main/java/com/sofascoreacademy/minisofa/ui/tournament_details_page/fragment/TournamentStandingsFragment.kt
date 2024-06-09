@@ -10,7 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sofascoreacademy.minisofa.data.model.Tournament
 import com.sofascoreacademy.minisofa.databinding.FragmentTournamentStandingsBinding
-import com.sofascoreacademy.minisofa.ui.home.HomeViewModel
+import com.sofascoreacademy.minisofa.MainViewModel
 import com.sofascoreacademy.minisofa.ui.tournament_details_page.adapter.TournamentStandingsRecyclerAdapter
 import com.sofascoreacademy.minisofa.ui.util.processAsListForRecyclerView
 import kotlinx.coroutines.Dispatchers
@@ -31,7 +31,7 @@ class TournamentStandingsFragment : Fragment() {
     private var _binding: FragmentTournamentStandingsBinding? = null
     private val binding get() = _binding!!
 
-    private val homeViewModel by activityViewModels<HomeViewModel>()
+    private val mainViewModel by activityViewModels<MainViewModel>()
 
     private lateinit var tournament: Tournament
 
@@ -56,7 +56,7 @@ class TournamentStandingsFragment : Fragment() {
             layoutManager = LinearLayoutManager(requireContext())
         }
 
-        homeViewModel.standingsLiveData.observe(viewLifecycleOwner) { binding.apply {
+        mainViewModel.standingsLiveData.observe(viewLifecycleOwner) { binding.apply {
             it.processAsListForRecyclerView(
                 rvTournamentStandings,
                 tvNoStandings,
@@ -67,7 +67,7 @@ class TournamentStandingsFragment : Fragment() {
         }}
 
         lifecycleScope.launch(Dispatchers.IO) {
-            homeViewModel.fetchTournamentStandings(tournament.id)
+            mainViewModel.fetchTournamentStandings(tournament.id)
         }
     }
 

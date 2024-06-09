@@ -11,7 +11,7 @@ import com.sofascoreacademy.minisofa.MainActivity
 import com.sofascoreacademy.minisofa.data.model.Tournament
 import com.sofascoreacademy.minisofa.data.remote.ITEMS_PER_PAGE
 import com.sofascoreacademy.minisofa.databinding.FragmentTournamentMatchesBinding
-import com.sofascoreacademy.minisofa.ui.home.HomeViewModel
+import com.sofascoreacademy.minisofa.MainViewModel
 import com.sofascoreacademy.minisofa.ui.tournament_details_page.EventPagingSource.Companion.FIRST_PAGE
 import com.sofascoreacademy.minisofa.ui.tournament_details_page.adapter.TournamentMatchesPagingAdapter
 import java.time.format.DateTimeFormatter
@@ -31,7 +31,7 @@ class TournamentMatchesFragment : Fragment() {
     private var _binding: FragmentTournamentMatchesBinding? = null
     private val binding get() = _binding!!
 
-    private val homeViewModel by activityViewModels<HomeViewModel>()
+    private val mainViewModel by activityViewModels<MainViewModel>()
 
 
     override fun onCreateView(
@@ -51,7 +51,7 @@ class TournamentMatchesFragment : Fragment() {
 
         val tournamentMatchesPagingAdapter = TournamentMatchesPagingAdapter(
             requireContext(),
-            DateTimeFormatter.ofPattern(homeViewModel.getDateFormatPattern())
+            DateTimeFormatter.ofPattern(mainViewModel.getDateFormatPattern())
         )
 
         binding.rvTournamentMatches.apply {
@@ -60,7 +60,7 @@ class TournamentMatchesFragment : Fragment() {
             adapter = tournamentMatchesPagingAdapter
         }
 
-        homeViewModel.observePagedTournamentEventsLiveData(
+        mainViewModel.observePagedTournamentEventsLiveData(
             tournament.id,
             (requireActivity() as MainActivity)::navigateToEventDetailsFromTournamentDetails,
             viewLifecycleOwner,
@@ -71,7 +71,7 @@ class TournamentMatchesFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-        homeViewModel.removeObservers(viewLifecycleOwner)
+        mainViewModel.removeObservers(viewLifecycleOwner)
     }
 
 }

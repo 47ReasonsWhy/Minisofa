@@ -1,4 +1,4 @@
-package com.sofascoreacademy.minisofa.ui.home.fragment
+package com.sofascoreacademy.minisofa.ui.home.main_list_page.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,9 +14,9 @@ import com.sofascoreacademy.minisofa.MainActivity
 import com.sofascoreacademy.minisofa.R
 import com.sofascoreacademy.minisofa.data.model.Sport
 import com.sofascoreacademy.minisofa.databinding.FragmentEventsForSportBinding
-import com.sofascoreacademy.minisofa.ui.home.HomeViewModel
-import com.sofascoreacademy.minisofa.ui.home.PLUS_AND_MINUS_DAYS
-import com.sofascoreacademy.minisofa.ui.home.adapter.EventsForSportViewPagerAdapter
+import com.sofascoreacademy.minisofa.MainViewModel
+import com.sofascoreacademy.minisofa.PLUS_AND_MINUS_DAYS
+import com.sofascoreacademy.minisofa.ui.home.main_list_page.adapter.EventsForSportViewPagerAdapter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -43,7 +43,7 @@ class EventsForSportFragment : Fragment() {
     private var _binding: FragmentEventsForSportBinding? = null
     private val binding get() = _binding!!
 
-    private val homeViewModel by activityViewModels<HomeViewModel>()
+    private val mainViewModel by activityViewModels<MainViewModel>()
 
     private lateinit var sport: Sport
 
@@ -76,7 +76,7 @@ class EventsForSportFragment : Fragment() {
             }
         }
 
-        val eventsForSportViewPagerAdapter = EventsForSportViewPagerAdapter(this, sport.slug, homeViewModel.vpDateMap)
+        val eventsForSportViewPagerAdapter = EventsForSportViewPagerAdapter(this, sport.slug, mainViewModel.vpDateMap)
 
         binding.vpForSportAndDate.apply {
             isNestedScrollingEnabled = true
@@ -84,7 +84,7 @@ class EventsForSportFragment : Fragment() {
             registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
                 override fun onPageSelected(position: Int) {
                     super.onPageSelected(position)
-                    homeViewModel.apply {
+                    mainViewModel.apply {
                         currentDate[sport.id] = vpDateMap[position]!!
                         viewModelScope.launch(Dispatchers.IO) {
                             fetchEventsForSportAndDate(
@@ -111,7 +111,7 @@ class EventsForSportFragment : Fragment() {
     }
 
     private fun getFormattedDate(date: LocalDate, today: Boolean): String = runBlocking {
-        val formatter = DateTimeFormatter.ofPattern(homeViewModel.getDayAndMonthDateFormatPattern())
+        val formatter = DateTimeFormatter.ofPattern(mainViewModel.getDayAndMonthDateFormatPattern())
         // getString(R.string.today) does not work - fragment not attached to a context
         return@runBlocking (
                 if (today) requireContext().getString(R.string.today)

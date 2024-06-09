@@ -1,4 +1,4 @@
-package com.sofascoreacademy.minisofa.ui.home
+package com.sofascoreacademy.minisofa
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
@@ -11,7 +11,6 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.liveData
 import androidx.paging.map
-import com.sofascoreacademy.minisofa.R
 import com.sofascoreacademy.minisofa.data.local.datastore.DateFormat
 import com.sofascoreacademy.minisofa.data.local.datastore.dateFormatFlow
 import com.sofascoreacademy.minisofa.data.local.datastore.getDateFormatPattern
@@ -36,8 +35,8 @@ import com.sofascoreacademy.minisofa.data.repository.MinisofaRepository
 import com.sofascoreacademy.minisofa.data.repository.Resource
 import com.sofascoreacademy.minisofa.ui.event_details_page.adapter.IncidentListItem
 import com.sofascoreacademy.minisofa.ui.event_details_page.adapter.IncidentListItem.Companion.toIncidentItemList
-import com.sofascoreacademy.minisofa.ui.home.adapter.EventListRecyclerAdapter.EventListItem
-import com.sofascoreacademy.minisofa.ui.leagues_page.adapter.LeaguesRecyclerAdapter.LeagueItem
+import com.sofascoreacademy.minisofa.ui.home.main_list_page.adapter.EventListRecyclerAdapter.EventListItem
+import com.sofascoreacademy.minisofa.ui.home.leagues_page.adapter.LeaguesRecyclerAdapter.LeagueItem
 import com.sofascoreacademy.minisofa.ui.tournament_details_page.EventPagingSource
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -49,7 +48,7 @@ import java.time.LocalDate
 const val PLUS_AND_MINUS_DAYS = 7
 
 
-class HomeViewModel(private val application: Application) : AndroidViewModel(application) {
+class MainViewModel(private val application: Application) : AndroidViewModel(application) {
 
     enum class Showing {
         EVENTS, LEAGUES

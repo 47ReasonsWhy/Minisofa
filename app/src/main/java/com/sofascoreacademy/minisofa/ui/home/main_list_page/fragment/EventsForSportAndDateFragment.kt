@@ -1,4 +1,4 @@
-package com.sofascoreacademy.minisofa.ui.home.fragment
+package com.sofascoreacademy.minisofa.ui.home.main_list_page.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,8 +10,8 @@ import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sofascoreacademy.minisofa.MainActivity
 import com.sofascoreacademy.minisofa.databinding.FragmentListEventsForSportAndDateBinding
-import com.sofascoreacademy.minisofa.ui.home.HomeViewModel
-import com.sofascoreacademy.minisofa.ui.home.adapter.EventListRecyclerAdapter
+import com.sofascoreacademy.minisofa.MainViewModel
+import com.sofascoreacademy.minisofa.ui.home.main_list_page.adapter.EventListRecyclerAdapter
 import com.sofascoreacademy.minisofa.ui.util.processAsListForRecyclerView
 import kotlinx.coroutines.launch
 
@@ -32,7 +32,7 @@ class EventsForSportAndDateFragment : Fragment() {
 
     private val binding get() = _binding!!
 
-    private val homeViewModel by activityViewModels<HomeViewModel>()
+    private val mainViewModel by activityViewModels<MainViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -58,7 +58,7 @@ class EventsForSportAndDateFragment : Fragment() {
 
         binding.srlContainer.apply {
             setOnRefreshListener {
-                homeViewModel.apply {
+                mainViewModel.apply {
                     viewModelScope.launch {
                         fetchEventsForSportAndDate(
                             sportSlug,
@@ -72,7 +72,7 @@ class EventsForSportAndDateFragment : Fragment() {
             }
         }
 
-        homeViewModel.eventsLiveData.observe(viewLifecycleOwner) { binding.apply {
+        mainViewModel.eventsLiveData.observe(viewLifecycleOwner) { binding.apply {
             it.processAsListForRecyclerView(
                 rwEventsForSportAndDate,
                 tvNoEvents,

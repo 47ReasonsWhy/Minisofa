@@ -13,7 +13,6 @@ import com.sofascoreacademy.minisofa.data.model.Tournament
 import com.sofascoreacademy.minisofa.databinding.ActivityMainBinding
 import com.sofascoreacademy.minisofa.ui.event_details_page.fragment.EventDetailsFragmentDirections
 import com.sofascoreacademy.minisofa.ui.home.HomeFragmentDirections
-import com.sofascoreacademy.minisofa.ui.home.HomeViewModel
 import com.sofascoreacademy.minisofa.ui.tournament_details_page.fragment.TournamentDetailsFragmentDirections
 import kotlinx.coroutines.launch
 
@@ -23,7 +22,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController
 
-    private val homeViewModel: HomeViewModel by viewModels()
+    private val mainViewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +38,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        homeViewModel.observeDateFormatPreference(lifecycleScope)
+        mainViewModel.observeDateFormatPreference(lifecycleScope)
     }
 
     fun navigateToEventDetailsFromHome(event: Event) {
