@@ -1,4 +1,4 @@
-package com.sofascoreacademy.minisofa.data.model.enums
+package com.sofascoreacademy.minisofa.data.model.enum
 
 enum class CardColor {
     YELLOW, YELLOW_RED, RED;

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
@@ -14,13 +15,14 @@ import com.google.android.material.R.attr.colorOnSurfaceVariant
 import com.sofascoreacademy.minisofa.MainActivity
 import com.sofascoreacademy.minisofa.R
 import com.sofascoreacademy.minisofa.R.attr.colorSpecificLive
-import com.sofascoreacademy.minisofa.data.model.enums.EventStatus
+import com.sofascoreacademy.minisofa.data.model.enum.EventStatus
 import com.sofascoreacademy.minisofa.data.repository.Resource
 import com.sofascoreacademy.minisofa.databinding.FragmentEventDetailsBinding
-import com.sofascoreacademy.minisofa.ui.home_page.HomeViewModel
+import com.sofascoreacademy.minisofa.ui.home.HomeViewModel
 import com.sofascoreacademy.minisofa.ui.event_details_page.adapter.IncidentListItem.Companion.getIncidentViewType
 import com.sofascoreacademy.minisofa.ui.event_details_page.adapter.IncidentListRecyclerAdapter
 import com.sofascoreacademy.minisofa.ui.util.setTextColorFromAttr
+import kotlinx.coroutines.launch
 
 class EventDetailsFragment : Fragment() {
 
@@ -29,7 +31,7 @@ class EventDetailsFragment : Fragment() {
 
     private val homeViewModel by activityViewModels<HomeViewModel>()
 
-    private val incidents by lazy { homeViewModel.incidents }
+    private val incidents by lazy { homeViewModel.incidentsLiveData }
 
     private val incidentListAdapter by lazy { IncidentListRecyclerAdapter(requireContext()) }
 
@@ -86,7 +88,6 @@ class EventDetailsFragment : Fragment() {
                     tvTime.text = getString(R.string.FT)
                     tvScore.setTextColorFromAttr(colorOnSurfaceVariant)
                     tvTime.setTextColorFromAttr(colorOnSurfaceVariant)
-                    // TODO: adapt color to highlight winner
                 }
             }
 
@@ -124,17 +125,12 @@ class EventDetailsFragment : Fragment() {
                     tvNoConnectionLoadingIncidents.visibility = View.VISIBLE
                 }
                 is Resource.Loading -> {
+                    llNoResultsYet.visibility = View.GONE
+                    tvNoConnectionLoadingIncidents.visibility = View.GONE
+                    rvIncidents.visibility = View.VISIBLE
+                    pbLoadingIncidents.visibility = View.VISIBLE
                     if (it.data?.isNotEmpty() == true) {
-                        pbLoadingIncidents.visibility = View.VISIBLE
-                        rvIncidents.visibility = View.VISIBLE
-                        llNoResultsYet.visibility = View.GONE
-                        tvNoConnectionLoadingIncidents.visibility = View.GONE
                         incidentListAdapter.submitList(it.data)
-                    } else {
-                        rvIncidents.visibility = View.GONE
-                        llNoResultsYet.visibility = View.GONE
-                        tvNoConnectionLoadingIncidents.visibility = View.GONE
-                        pbLoadingIncidents.visibility = View.VISIBLE
                     }
                 }
                 is Resource.Success -> {
@@ -143,6 +139,9 @@ class EventDetailsFragment : Fragment() {
                     if (it.data.isEmpty()) {
                         rvIncidents.visibility = View.GONE
                         llNoResultsYet.visibility = View.VISIBLE
+                        btnViewTournamentDetails.setOnClickListener {
+                            (requireActivity() as MainActivity).navigateToTournamentDetailsFromEventDetails(event.tournament)
+                        }
                     } else {
                         llNoResultsYet.visibility = View.GONE
                         rvIncidents.visibility = View.VISIBLE
@@ -152,7 +151,7 @@ class EventDetailsFragment : Fragment() {
             }
         }}
 
-        homeViewModel.getIncidents(event.id, event.getIncidentViewType())
+        homeViewModel.apply { viewModelScope.launch { fetchIncidentsForEvent(event.id, event.getIncidentViewType()) } }
     }
 
     override fun onDestroyView() {

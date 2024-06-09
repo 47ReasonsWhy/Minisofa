@@ -1,7 +1,8 @@
-package com.sofascoreacademy.minisofa.ui.home_page.adapter
+package com.sofascoreacademy.minisofa.ui.home.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -13,17 +14,19 @@ import com.sofascoreacademy.minisofa.R
 import com.sofascoreacademy.minisofa.R.attr.colorSpecificLive
 import com.sofascoreacademy.minisofa.data.model.Event
 import com.sofascoreacademy.minisofa.data.model.Tournament
-import com.sofascoreacademy.minisofa.data.model.enums.EventStatus
-import com.sofascoreacademy.minisofa.data.model.enums.EventWinnerCode
+import com.sofascoreacademy.minisofa.data.model.enum.EventStatus
+import com.sofascoreacademy.minisofa.data.model.enum.EventWinnerCode
 import com.sofascoreacademy.minisofa.databinding.ItemEventHeaderBinding
 import com.sofascoreacademy.minisofa.databinding.ItemEventItemBinding
 import com.sofascoreacademy.minisofa.ui.util.setTextColorFromAttr
 
-class EventListRecyclerAdapter(private val context: Context) : RecyclerView.Adapter<ViewHolder>() {
+class EventListRecyclerAdapter(
+    private val context: Context
+) : RecyclerView.Adapter<ViewHolder>() {
 
     sealed class EventListItem {
         data class EventItem(val event: Event, val onClick: (Event) -> Unit) : EventListItem()
-        data class HeaderItem(val tournament: Tournament) : EventListItem()
+        data class HeaderItem(val tournament: Tournament, val onClick: (Tournament) -> Unit) : EventListItem()
 
         enum class ViewType {
             EVENT_ITEM,
@@ -51,7 +54,7 @@ class EventListRecyclerAdapter(private val context: Context) : RecyclerView.Adap
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         when (val item = items[position]) {
             is EventListItem.EventItem -> (holder as EventItemViewHolder).bind(item.event, item.onClick)
-            is EventListItem.HeaderItem -> (holder as HeaderItemViewHolder).bind(item.tournament)
+            is EventListItem.HeaderItem -> (holder as HeaderItemViewHolder).bind(item.tournament, item.onClick)
         }
     }
 
@@ -72,20 +75,10 @@ class EventListRecyclerAdapter(private val context: Context) : RecyclerView.Adap
         diffResult.dispatchUpdatesTo(this)
     }
 
-    inner class HeaderItemViewHolder(private val binding: ItemEventHeaderBinding) : ViewHolder(binding.root) {
-        fun bind(tournament: Tournament) {
-            binding.tvCountryName.text = tournament.country.name
-            binding.tvLeagueName.text = tournament.name
-            Glide.with(binding.root)
-                .load(tournament.logoURL)
-                .placeholder(R.drawable.ic_sofascore)
-                .into(binding.ivTournamentLogo)
-        }
-    }
-
     inner class EventItemViewHolder(private val binding: ItemEventItemBinding) : ViewHolder(binding.root) {
-        fun bind(event: Event, onClick: (Event) -> Unit) {
+        fun bind(event: Event, onEventClick: (Event) -> Unit) {
             binding.apply {
+                clEventRound.visibility = View.GONE
                 tvStartTime.text = event.startTime
                 when (event.status) {
                     EventStatus.NOT_STARTED -> {
@@ -152,8 +145,22 @@ class EventListRecyclerAdapter(private val context: Context) : RecyclerView.Adap
                     .into(ivAwayTeamLogo)
 
                 root.setOnClickListener {
-                    onClick(event)
+                    onEventClick(event)
                 }
+            }
+        }
+    }
+
+    inner class HeaderItemViewHolder(private val binding: ItemEventHeaderBinding) : ViewHolder(binding.root) {
+        fun bind(tournament: Tournament, onTournamentClick: (Tournament) -> Unit) {
+            binding.tvCountryName.text = tournament.country.name
+            binding.tvLeagueName.text = tournament.name
+            Glide.with(binding.root)
+                .load(tournament.logoURL)
+                .placeholder(R.drawable.ic_sofascore)
+                .into(binding.ivTournamentLogo)
+            binding.root.setOnClickListener {
+                onTournamentClick(tournament)
             }
         }
     }

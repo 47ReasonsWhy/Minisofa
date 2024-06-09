@@ -1,4 +1,4 @@
-package com.sofascoreacademy.minisofa.data.model.enums
+package com.sofascoreacademy.minisofa.data.model.enum
 
 import java.io.Serializable
 

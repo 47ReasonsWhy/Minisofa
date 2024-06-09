@@ -1,9 +1,9 @@
 package com.sofascoreacademy.minisofa.data.model
 
-import com.sofascoreacademy.minisofa.data.model.enums.CardColor
-import com.sofascoreacademy.minisofa.data.model.enums.GoalType
-import com.sofascoreacademy.minisofa.data.model.enums.IncidentType
-import com.sofascoreacademy.minisofa.data.model.enums.TeamSide
+import com.sofascoreacademy.minisofa.data.model.enum.CardColor
+import com.sofascoreacademy.minisofa.data.model.enum.GoalType
+import com.sofascoreacademy.minisofa.data.model.enum.IncidentType
+import com.sofascoreacademy.minisofa.data.model.enum.TeamSide
 
 sealed class Incident {
 
