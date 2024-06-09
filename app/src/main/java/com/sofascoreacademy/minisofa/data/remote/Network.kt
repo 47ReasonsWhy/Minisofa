@@ -9,6 +9,9 @@ import kotlin.time.toJavaDuration
 
 const val BASE_URL = "https://academy-backend.sofascore.dev/"
 
+// checked with a few requests
+const val ITEMS_PER_PAGE = 10
+
 object Network {
     @Volatile
     private var INSTANCE: ApiService? = null

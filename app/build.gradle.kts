@@ -26,6 +26,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            signingConfig = signingConfigs.getByName("debug")
         }
     }
     compileOptions {
@@ -67,6 +68,8 @@ dependencies {
 
     implementation(libs.bumptech.glide)
     annotationProcessor(libs.bumptech.glide.compiler)
+
+    implementation(libs.androidx.paging)
 
     testImplementation(libs.junit)
 

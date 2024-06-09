@@ -82,11 +82,14 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:id="@+id/rg_theme"
-                android:layout_margin="8dp">
+                android:layout_margin="8dp"
+                android:paddingStart="4dp"
+                android:paddingEnd="16dp">
 
                 <RadioButton
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layoutDirection="rtl"
                     android:text="@string/light"
                     android:textSize="16sp"
                     android:textColor="?colorOnSurface"
@@ -97,6 +100,7 @@
                 <RadioButton
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layoutDirection="rtl"
                     android:text="@string/dark"
                     android:textSize="16sp"
                     android:textColor="?colorOnSurface"
@@ -107,12 +111,12 @@
                 <RadioButton
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layoutDirection="rtl"
                     android:text="@string/system"
                     android:textSize="16sp"
                     android:textColor="?colorOnSurface"
-                    android:id="@+id/rb_system_default"
+                    android:id="@+id/rb_system"
                     android:buttonTint="?colorPrimary"
-                    android:checked="true"
                     />
 
             </RadioGroup>
@@ -143,11 +147,14 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:id="@+id/rg_date_format"
-                android:layout_margin="8dp">
+                android:layout_margin="8dp"
+                android:paddingStart="4dp"
+                android:paddingEnd="16dp">
 
                 <RadioButton
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layoutDirection="rtl"
                     android:text="@string/dd_mm_yyyy"
                     android:textSize="16sp"
                     android:textColor="?colorOnSurface"
@@ -158,6 +165,7 @@
                 <RadioButton
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layoutDirection="rtl"
                     android:text="@string/mm_dd_yyyy"
                     android:textSize="16sp"
                     android:textColor="?colorOnSurface"
@@ -168,12 +176,12 @@
                 <RadioButton
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layoutDirection="rtl"
                     android:text="@string/yyyy_mm_dd"
                     android:textSize="16sp"
                     android:textColor="?colorOnSurface"
                     android:id="@+id/rb_yyyy_mm_dd"
                     android:buttonTint="?colorPrimary"
-                    android:checked="true"
                     />
 
             </RadioGroup>

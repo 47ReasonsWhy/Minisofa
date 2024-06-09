@@ -11,7 +11,7 @@
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" >
         <action
-            android:id="@+id/navigate_to_event_details"
+            android:id="@+id/navigate_to_event_details_from_home"
             app:destination="@id/eventDetailsFragment"
             app:enterAnim="@android:anim/slide_in_left"
             app:exitAnim="@android:anim/fade_out"
@@ -24,17 +24,46 @@
             app:exitAnim="@android:anim/fade_out"
             app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/slide_out_right" />
+        <action
+            android:id="@+id/navigate_to_tournament_details_from_home"
+            app:destination="@id/tournamentDetailsFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/eventDetailsFragment"
-        android:name="com.sofascoreacademy.minisofa.ui.home.fragment.EventDetailsFragment"
+        android:name="com.sofascoreacademy.minisofa.ui.event_details_page.fragment.EventDetailsFragment"
         android:label="EventDetailsFragment" >
         <argument
             android:name="event"
             app:argType="com.sofascoreacademy.minisofa.data.model.Event" />
+        <action
+            android:id="@+id/navigate_to_tournament_details_from_event_details"
+            app:destination="@id/tournamentDetailsFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.sofascoreacademy.minisofa.ui.home.fragment.SettingsFragment"
+        android:name="com.sofascoreacademy.minisofa.ui.settings.fragment.SettingsFragment"
         android:label="SettingsFragment" />
+    <fragment
+        android:id="@+id/tournamentDetailsFragment"
+        android:name="com.sofascoreacademy.minisofa.ui.tournament_details_page.fragment.TournamentDetailsFragment"
+        android:label="TournamentDetailsFragment" >
+        <argument
+            android:name="tournament"
+            app:argType="com.sofascoreacademy.minisofa.data.model.Tournament" />
+        <action
+            android:id="@+id/navigate_to_event_details_from_tournament_details"
+            app:destination="@id/eventDetailsFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/slide_out_right" />
+    </fragment>
 </navigation>

@@ -1,125 +1,177 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="60dp"
+    android:layout_height="wrap_content"
     android:layout_marginVertical="8dp"
-    android:clickable="true"
-    android:focusable="true"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
-        android:id="@+id/tv_start_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/cl_event_item"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/v_separator"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/tv_current_time"
-        android:layout_marginHorizontal="16dp"
-        android:textAlignment="center"
-        android:textColor="?colorOnSurfaceVariant"
-        android:textSize="14sp"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/cl_event_round"
+        android:background="?colorSurfaceVariant"
+        android:visibility="gone">
 
-    <TextView
-        android:id="@+id/tv_current_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        <TextView
+            android:id="@+id/tv_tournament_round"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="8dp"
+            android:textColor="?colorOnSurface"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textAlignment="textStart"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:id="@+id/cl_event_item"
+        app:layout_constraintTop_toBottomOf="@id/cl_event_round"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/v_separator"
-        app:layout_constraintTop_toBottomOf="@id/tv_start_time"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginHorizontal="16dp"
-        android:textAlignment="center"
-        android:textColor="?colorOnSurfaceVariant"
-        android:textSize="14sp"
-        />
+        app:layout_constraintEnd_toEndOf="parent">
 
-    <View
-        android:layout_width="1dp"
-        android:layout_height="54dp"
-        android:id="@+id/v_separator"
-        android:background="?colorOnSurfaceVariant"
-        app:layout_constraintStart_toEndOf="@id/tv_start_time"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginHorizontal="16dp"
-        />
-    
+        <TextView
+            android:id="@+id/tv_start_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/v_separator"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/tv_current_time"
+            android:layout_marginHorizontal="16dp"
+            android:textAlignment="center"
+            android:textColor="?colorOnSurfaceVariant"
+            android:textSize="14sp"
+            android:fontFamily="sans-serif-condensed"
+            />
+
+        <TextView
+            android:id="@+id/tv_current_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/v_separator"
+            app:layout_constraintTop_toBottomOf="@id/tv_start_time"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginHorizontal="16dp"
+            android:textAlignment="center"
+            android:textColor="?colorOnSurfaceVariant"
+            android:textSize="14sp"
+            android:fontFamily="sans-serif-condensed"
+            />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="54dp"
+            android:id="@+id/v_separator"
+            android:background="?colorOnSurfaceVariant"
+            app:layout_constraintStart_toEndOf="@id/tv_start_time"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginHorizontal="16dp"
+            />
+
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:id="@+id/iv_home_team_logo"
+            app:layout_constraintStart_toEndOf="@id/v_separator"
+            app:layout_constraintTop_toTopOf="@id/tv_home_team_name"
+            app:layout_constraintBottom_toBottomOf="@id/tv_home_team_name"
+            android:layout_marginHorizontal="16dp"
+            android:contentDescription="@string/home_team_logo"
+            />
+
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:id="@+id/iv_away_team_logo"
+            app:layout_constraintStart_toEndOf="@id/v_separator"
+            app:layout_constraintTop_toTopOf="@id/tv_away_team_name"
+            app:layout_constraintBottom_toBottomOf="@id/tv_away_team_name"
+            android:layout_marginHorizontal="16dp"
+            android:contentDescription="@string/away_team_logo"
+            />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_home_team_name"
+            app:layout_constraintStart_toEndOf="@id/iv_home_team_logo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/tv_away_team_name"
+            android:layout_marginHorizontal="16dp"
+            android:textColor="?colorOnSurface"
+            android:textSize="16sp"
+            android:textAlignment="textStart"
+            />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_away_team_name"
+            app:layout_constraintStart_toEndOf="@id/iv_away_team_logo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_home_team_name"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginHorizontal="16dp"
+            android:textColor="?colorOnSurface"
+            android:textSize="16sp"
+            android:textAlignment="textStart"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_home_team_score"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/tv_away_team_score"
+            android:layout_marginHorizontal="16dp"
+            android:textColor="?colorOnSurface"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_away_team_score"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_home_team_score"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginHorizontal="16dp"
+            android:textColor="?colorOnSurface"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <ImageView
-        android:layout_width="18dp"
-        android:layout_height="18dp"
-        android:id="@+id/iv_home_team_logo"
-        app:layout_constraintStart_toEndOf="@id/v_separator"
-        app:layout_constraintTop_toTopOf="@id/tv_home_team_name"
-        app:layout_constraintBottom_toBottomOf="@id/tv_home_team_name"
-        android:layout_marginHorizontal="16dp"
-        android:contentDescription="@string/home_team_logo"
-        />
-
-    <ImageView
-        android:layout_width="18dp"
-        android:layout_height="18dp"
-        android:id="@+id/iv_away_team_logo"
-        app:layout_constraintStart_toEndOf="@id/v_separator"
-        app:layout_constraintTop_toTopOf="@id/tv_away_team_name"
-        app:layout_constraintBottom_toBottomOf="@id/tv_away_team_name"
-        android:layout_marginHorizontal="16dp"
-        android:contentDescription="@string/away_team_logo"
-        />
-
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_home_team_name"
-        app:layout_constraintStart_toEndOf="@id/iv_home_team_logo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/tv_away_team_name"
-        android:layout_marginHorizontal="16dp"
-        android:textColor="?colorOnSurface"
-        android:textSize="16sp"
-        android:textAlignment="textStart"
-        />
-
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_away_team_name"
-        app:layout_constraintStart_toEndOf="@id/iv_away_team_logo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_home_team_name"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginHorizontal="16dp"
-        android:textColor="?colorOnSurface"
-        android:textSize="16sp"
-        android:textAlignment="textStart"
-        />
-
-    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_home_team_score"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/iv_event_placeholder"
+        android:src="@drawable/logo_sofascore"
+        android:contentDescription="@string/no_more_events_or_loading"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/tv_away_team_score"
-        android:layout_marginHorizontal="16dp"
-        android:textColor="?colorOnSurface"
-        android:textSize="16sp"
-        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:tint="?colorPrimary"
+        android:visibility="gone"
         />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_away_team_score"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_home_team_score"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginHorizontal="16dp"
-        android:textColor="?colorOnSurface"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

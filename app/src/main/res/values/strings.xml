@@ -10,8 +10,9 @@
     <string name="error_while_loading_sports">Error while loading sports</string>
     <string name="no_connection_loading_events">No connection while loading events</string>
     <string name="no_events">No events for selected sport and date</string>
+    <string name="no_more_events_or_loading">No more events or loading (placeholder)</string>
     <string name="arrow_right">Arrow right</string>
-    <string name="today">Today</string>
+    <string name="today">TODAY</string>
     <string name="tournament_logo">Tournament logo</string>
     <string name="home_team_logo">Home team logo</string>
     <string name="away_team_logo">Away team logo</string>
@@ -28,6 +29,27 @@
     <string name="penalty">Penalty</string>
     <string name="no_results_yet">No results yet</string>
     <string name="event_description">%1$s, %2$s, %3$s, Round %4$d</string>
+    <string name="round_n">Round %1$d</string>
+    <string name="matches">Matches</string>
+    <string name="standings">Standings</string>
+    <string name="no_standings_yet">No standings yet</string>
+    <string name="view_tournament_details">View Tournament Details</string>
+    <string name="league_logo">League logo</string>
+    <string name="no_leagues">No leagues</string>
+    <string name="no_connection_loading_leagues">No connection while loading leagues</string>
+
+    <string name="team">Team</string>
+    <string name="played">P</string>
+    <string name="wins">W</string>
+    <string name="draws">D</string>
+    <string name="losses">L</string>
+    <string name="goals">Goals</string>
+    <string name="goals_fb">%1$d:%2$d</string>
+    <string name="DIFF">DIFF</string>
+    <string name="points">PTS</string>
+    <string name="percentage">PCT</string>
+    <string name="percentage_format">%1$.3f</string>
+
 
     <string name="settings">Settings</string>
     <string name="theme">Theme</string>

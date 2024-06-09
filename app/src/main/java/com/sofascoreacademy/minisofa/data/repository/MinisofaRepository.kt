@@ -10,8 +10,16 @@ class MinisofaRepository {
 
     suspend fun fetchSports() = safeResponse { api.getSports() }
 
-    suspend fun fetchEvents(sportSlug: String, date: String) = safeResponse { api.getEvents(sportSlug, date) }
+    suspend fun fetchEvents(sportSlug: String, date: String) = safeResponse { api.getEventsForSportAndDate(sportSlug, date) }
+
+    suspend fun fetchTournaments(sportSlug: String) = safeResponse { api.getTournamentsForSport(sportSlug) }
 
     suspend fun fetchIncidents(eventId: Int) = safeResponse { api.getIncidents(eventId) }
+
+    suspend fun fetchFutureEventsForTournament(tournamentId: Int, page: Int) = safeResponse { api.getFutureEventsForTournament(tournamentId, page) }
+
+    suspend fun fetchPastEventsForTournament(tournamentId: Int, page: Int) = safeResponse { api.getPastEventsForTournament(tournamentId, page) }
+
+    suspend fun fetchTournamentStandings(tournamentId: Int) = safeResponse { api.getStandings(tournamentId).first() }
 
 }
