@@ -22,6 +22,7 @@ okHttpVersion = "4.12.0"
 navigationSafeArgs = "2.7.7"
 glideVersion = "4.12.0"
 swipeRefreshLayoutVersion = "1.1.0"
+pagingVersion = "3.3.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -48,6 +49,7 @@ okHttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor",
 bumptech-glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glideVersion" }
 bumptech-glide-compiler = { group = "com.github.bumptech.glide", name = "compiler", version.ref = "glideVersion" }
 androidx-swiperefreshlayout = { group = "androidx.swiperefreshlayout", name = "swiperefreshlayout", version.ref = "swipeRefreshLayoutVersion" }
+androidx-paging = { group = "androidx.paging", name = "paging-runtime-ktx", version.ref = "pagingVersion" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
