@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home_page.HomeFragment">
+    tools:context=".ui.home.HomeFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -34,6 +34,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginVertical="14dp"
+                app:tint="?colorSurface"
                 />
 
             <ImageButton
@@ -49,6 +50,7 @@
                 android:layout_marginHorizontal="12dp"
                 android:layout_marginVertical="12dp"
                 android:background="@color/transparent"
+                app:tint="?colorSurface"
                 />
 
             <ImageButton
@@ -64,6 +66,7 @@
                 android:layout_marginHorizontal="12dp"
                 android:layout_marginVertical="12dp"
                 android:background="@color/transparent"
+                app:tint="?colorSurface"
                 />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -95,7 +98,7 @@
 
     <com.google.android.material.tabs.TabLayout
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
         android:id="@+id/tl_sports"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -103,10 +106,12 @@
         app:layout_constraintBottom_toTopOf="@id/vp_for_sport"
         app:tabMode="scrollable"
         android:background="?colorPrimary"
+        app:tabTextAppearance="@style/tab_font_roboto"
         app:tabTextColor="?colorSurface"
         app:tabSelectedTextColor="?colorSurface"
         app:tabIndicatorColor="?colorSurface"
         app:tabRippleColor="?colorSurface"
+        app:tabIconTint="?colorSurface"
         />
 
     <androidx.viewpager2.widget.ViewPager2
