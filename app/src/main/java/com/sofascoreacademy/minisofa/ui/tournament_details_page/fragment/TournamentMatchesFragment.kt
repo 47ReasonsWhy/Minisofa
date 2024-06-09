@@ -11,7 +11,7 @@ import com.sofascoreacademy.minisofa.MainActivity
 import com.sofascoreacademy.minisofa.data.model.Tournament
 import com.sofascoreacademy.minisofa.data.remote.ITEMS_PER_PAGE
 import com.sofascoreacademy.minisofa.databinding.FragmentTournamentMatchesBinding
-import com.sofascoreacademy.minisofa.ui.home.HomeViewModel
+import com.sofascoreacademy.minisofa.HomeViewModel
 import com.sofascoreacademy.minisofa.ui.tournament_details_page.EventPagingSource.Companion.FIRST_PAGE
 import com.sofascoreacademy.minisofa.ui.tournament_details_page.adapter.TournamentMatchesPagingAdapter
 import java.time.format.DateTimeFormatter

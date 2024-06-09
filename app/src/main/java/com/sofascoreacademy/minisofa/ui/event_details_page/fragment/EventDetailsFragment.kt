@@ -18,7 +18,7 @@ import com.sofascoreacademy.minisofa.R.attr.colorSpecificLive
 import com.sofascoreacademy.minisofa.data.model.enum.EventStatus
 import com.sofascoreacademy.minisofa.data.repository.Resource
 import com.sofascoreacademy.minisofa.databinding.FragmentEventDetailsBinding
-import com.sofascoreacademy.minisofa.ui.home.HomeViewModel
+import com.sofascoreacademy.minisofa.HomeViewModel
 import com.sofascoreacademy.minisofa.ui.event_details_page.adapter.IncidentListItem.Companion.getIncidentViewType
 import com.sofascoreacademy.minisofa.ui.event_details_page.adapter.IncidentListRecyclerAdapter
 import com.sofascoreacademy.minisofa.ui.util.setTextColorFromAttr

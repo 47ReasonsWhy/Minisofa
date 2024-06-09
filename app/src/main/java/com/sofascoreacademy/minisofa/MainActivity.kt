@@ -13,7 +13,6 @@ import com.sofascoreacademy.minisofa.data.model.Tournament
 import com.sofascoreacademy.minisofa.databinding.ActivityMainBinding
 import com.sofascoreacademy.minisofa.ui.event_details_page.fragment.EventDetailsFragmentDirections
 import com.sofascoreacademy.minisofa.ui.home.HomeFragmentDirections
-import com.sofascoreacademy.minisofa.ui.home.HomeViewModel
 import com.sofascoreacademy.minisofa.ui.tournament_details_page.fragment.TournamentDetailsFragmentDirections
 import kotlinx.coroutines.launch
 

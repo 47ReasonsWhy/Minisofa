@@ -10,12 +10,13 @@ import androidx.lifecycle.viewModelScope
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import com.sofascoreacademy.minisofa.HomeViewModel
 import com.sofascoreacademy.minisofa.MainActivity
 import com.sofascoreacademy.minisofa.R
 import com.sofascoreacademy.minisofa.data.model.Sport
 import com.sofascoreacademy.minisofa.data.repository.Resource
 import com.sofascoreacademy.minisofa.databinding.FragmentHomeBinding
-import com.sofascoreacademy.minisofa.ui.home.adapter.SportsViewPagerAdapter
+import com.sofascoreacademy.minisofa.ui.home.main_list_page.adapter.SportsViewPagerAdapter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

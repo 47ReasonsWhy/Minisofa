@@ -1,4 +1,4 @@
-package com.sofascoreacademy.minisofa.ui.home.fragment
+package com.sofascoreacademy.minisofa.ui.home.main_list_page.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,9 +14,9 @@ import com.sofascoreacademy.minisofa.MainActivity
 import com.sofascoreacademy.minisofa.R
 import com.sofascoreacademy.minisofa.data.model.Sport
 import com.sofascoreacademy.minisofa.databinding.FragmentEventsForSportBinding
-import com.sofascoreacademy.minisofa.ui.home.HomeViewModel
-import com.sofascoreacademy.minisofa.ui.home.PLUS_AND_MINUS_DAYS
-import com.sofascoreacademy.minisofa.ui.home.adapter.EventsForSportViewPagerAdapter
+import com.sofascoreacademy.minisofa.HomeViewModel
+import com.sofascoreacademy.minisofa.PLUS_AND_MINUS_DAYS
+import com.sofascoreacademy.minisofa.ui.home.main_list_page.adapter.EventsForSportViewPagerAdapter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking

@@ -10,7 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sofascoreacademy.minisofa.data.model.Tournament
 import com.sofascoreacademy.minisofa.databinding.FragmentTournamentStandingsBinding
-import com.sofascoreacademy.minisofa.ui.home.HomeViewModel
+import com.sofascoreacademy.minisofa.HomeViewModel
 import com.sofascoreacademy.minisofa.ui.tournament_details_page.adapter.TournamentStandingsRecyclerAdapter
 import com.sofascoreacademy.minisofa.ui.util.processAsListForRecyclerView
 import kotlinx.coroutines.Dispatchers

@@ -1,4 +1,4 @@
-package com.sofascoreacademy.minisofa.ui.leagues_page.fragment
+package com.sofascoreacademy.minisofa.ui.home.leagues_page.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,8 +10,8 @@ import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sofascoreacademy.minisofa.MainActivity
 import com.sofascoreacademy.minisofa.databinding.FragmentLeaguesBinding
-import com.sofascoreacademy.minisofa.ui.home.HomeViewModel
-import com.sofascoreacademy.minisofa.ui.leagues_page.adapter.LeaguesRecyclerAdapter
+import com.sofascoreacademy.minisofa.HomeViewModel
+import com.sofascoreacademy.minisofa.ui.home.leagues_page.adapter.LeaguesRecyclerAdapter
 import com.sofascoreacademy.minisofa.ui.util.processAsListForRecyclerView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
