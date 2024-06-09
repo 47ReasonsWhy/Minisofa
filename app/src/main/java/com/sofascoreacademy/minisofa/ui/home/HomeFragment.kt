@@ -46,7 +46,7 @@ class HomeFragment : Fragment() {
                     is Resource.Loading -> {
                         tlSports.visibility = View.GONE
                         vpForSport.visibility = View.GONE
-                        tvErrorWhileLoadingSports.visibility = View.GONE
+                        srlHome.visibility = View.GONE
                         pbLoadingSports.visibility = View.VISIBLE
                     }
 
@@ -54,13 +54,19 @@ class HomeFragment : Fragment() {
                         tlSports.visibility = View.GONE
                         vpForSport.visibility = View.GONE
                         pbLoadingSports.visibility = View.GONE
-                        tvErrorWhileLoadingSports.visibility = View.VISIBLE
+                        srlHome.visibility = View.VISIBLE
+                        srlHome.setOnRefreshListener {
+                            mainViewModel.viewModelScope.launch(Dispatchers.IO) {
+                                mainViewModel.fetchAllSports()
+                            }
+                            srlHome.isRefreshing = false
+                        }
                     }
 
                     is Resource.Success -> {
                         sports.addAll(it.data)
                         pbLoadingSports.visibility = View.GONE
-                        tvErrorWhileLoadingSports.visibility = View.GONE
+                        srlHome.visibility = View.GONE
                         tlSports.tabMode = TabLayout.MODE_FIXED
                         tlSports.visibility = View.VISIBLE
                         vpForSport.apply {

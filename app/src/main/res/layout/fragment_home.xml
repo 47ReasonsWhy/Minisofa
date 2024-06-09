@@ -84,17 +84,27 @@
         app:layout_constraintBottom_toBottomOf="parent"
         />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/error_while_loading_sports"
-        android:id="@+id/tv_error_while_loading_sports"
-        android:visibility="gone"
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:id="@+id/srl_home"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        />
+        app:layout_constraintTop_toBottomOf="@id/toolbar_home"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/no_connection_loading_sports"
+            android:id="@+id/tv_no_connection_loading_sports"
+            android:textColor="?colorOnSurface"
+            android:textSize="18sp"
+            android:gravity="center"
+            />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <com.google.android.material.tabs.TabLayout
         android:layout_width="match_parent"

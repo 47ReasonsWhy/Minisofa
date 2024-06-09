@@ -7,7 +7,7 @@
     <string name="go_back_button">Go back button</string>
 
     <string name="leagues">Leagues</string>
-    <string name="error_while_loading_sports">Error while loading sports</string>
+    <string name="no_connection_loading_sports">No connection while loading sports</string>
     <string name="no_connection_loading_events">No connection while loading events</string>
     <string name="no_events">No events for selected sport and date</string>
     <string name="no_more_events_or_loading">No more events or loading (placeholder)</string>
