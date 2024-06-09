@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="56dp"
+    android:layout_marginVertical="8dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginHorizontal="16dp"
+        android:id="@+id/iv_incident_icon_home_bb"
+        android:contentDescription="@string/incident_icon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/v_separator_left_bb"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="40dp"
+        android:id="@+id/v_separator_left_bb"
+        app:layout_constraintStart_toEndOf="@id/iv_incident_icon_home_bb"
+        app:layout_constraintEnd_toStartOf="@id/tv_score_home_bb"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="?colorOnSurfaceVariant" />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_score_home_bb"
+        app:layout_constraintStart_toEndOf="@id/v_separator_left_bb"
+        app:layout_constraintEnd_toStartOf="@id/tv_time_bb"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="24sp"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:textColor="?colorOnSurface" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_time_bb"
+        app:layout_constraintStart_toEndOf="@id/tv_score_home_bb"
+        app:layout_constraintEnd_toStartOf="@id/tv_score_away_bb"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColor="?colorOnSurfaceVariant" />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_score_away_bb"
+        app:layout_constraintStart_toEndOf="@id/tv_time_bb"
+        app:layout_constraintEnd_toStartOf="@id/v_separator_right_bb"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="24sp"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:textColor="?colorOnSurface" />
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="40dp"
+        android:id="@+id/v_separator_right_bb"
+        app:layout_constraintStart_toEndOf="@id/tv_score_away_bb"
+        app:layout_constraintEnd_toStartOf="@id/iv_incident_icon_away_bb"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="?colorOnSurfaceVariant" />
+
+    <ImageView
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginHorizontal="16dp"
+        android:id="@+id/iv_incident_icon_away_bb"
+        android:contentDescription="@string/incident_icon"
+        app:layout_constraintStart_toEndOf="@id/v_separator_right_bb"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

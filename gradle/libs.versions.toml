@@ -1,15 +1,16 @@
 [versions]
-agp = "8.4.1"
+#noinspection AndroidGradlePluginVersion
+agp = "8.4.0"
 kotlin = "1.9.23"
 coreKtx = "1.13.1"
 junit = "4.13.2"
 junitVersion = "1.1.5"
 espressoCore = "3.5.1"
-appcompat = "1.6.1"
+appcompat = "1.7.0"
 material = "1.12.0"
 constraintlayout = "2.1.4"
-lifecycleLivedataKtx = "2.8.0"
-lifecycleViewmodelKtx = "2.8.0"
+lifecycleLivedataKtx = "2.8.1"
+lifecycleViewmodelKtx = "2.8.1"
 fragmentKtx = "1.7.1"
 navigationFragmentKtx = "2.7.7"
 navigationUiKtx = "2.7.7"
@@ -19,6 +20,8 @@ room = "2.6.1"
 retrofitVersion = "2.11.0"
 okHttpVersion = "4.12.0"
 navigationSafeArgs = "2.7.7"
+glideVersion = "4.12.0"
+swipeRefreshLayoutVersion = "1.1.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -42,6 +45,9 @@ retrofit-client = { group = "com.squareup.retrofit2", name = "retrofit", version
 retrofit-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofitVersion" }
 okHttp-client = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okHttpVersion" }
 okHttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okHttpVersion" }
+bumptech-glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glideVersion" }
+bumptech-glide-compiler = { group = "com.github.bumptech.glide", name = "compiler", version.ref = "glideVersion" }
+androidx-swiperefreshlayout = { group = "androidx.swiperefreshlayout", name = "swiperefreshlayout", version.ref = "swipeRefreshLayoutVersion" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

@@ -7,7 +7,34 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.sofascoreacademy.minisofascore.ui.home.HomeFragment"
+        android:name="com.sofascoreacademy.minisofa.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/navigate_to_event_details"
+            app:destination="@id/eventDetailsFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/slide_out_right" />
+        <action
+            android:id="@+id/navigate_to_settings"
+            app:destination="@id/settingsFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/eventDetailsFragment"
+        android:name="com.sofascoreacademy.minisofa.ui.home.fragment.EventDetailsFragment"
+        android:label="EventDetailsFragment" >
+        <argument
+            android:name="event"
+            app:argType="com.sofascoreacademy.minisofa.data.model.Event" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.sofascoreacademy.minisofa.ui.home.fragment.SettingsFragment"
+        android:label="SettingsFragment" />
 </navigation>

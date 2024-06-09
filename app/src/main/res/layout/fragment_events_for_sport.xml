@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<com.sofascoreacademy.minisofascore.ui.util.NestedScrollableHost xmlns:android="http://schemas.android.com/apk/res/android"
+<com.sofascoreacademy.minisofa.ui.util.NestedScrollableHost xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -18,7 +18,10 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@id/vp_for_sport_and_date"
             android:background="?colorPrimaryVariant"
-            app:tabTextColor="?colorOnPrimary"
+            app:tabTextColor="?colorSurface"
+            app:tabSelectedTextColor="?colorSurface"
+            app:tabIndicatorColor="?colorSurface"
+            app:tabRippleColor="?colorSurface"
             />
 
         <androidx.viewpager2.widget.ViewPager2
@@ -33,4 +36,4 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</com.sofascoreacademy.minisofascore.ui.util.NestedScrollableHost>
+</com.sofascoreacademy.minisofa.ui.util.NestedScrollableHost>

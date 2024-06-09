@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="56dp"
+    android:layout_marginVertical="8dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginHorizontal="16dp"
+        android:id="@+id/iv_incident_icon_home_fb"
+        android:contentDescription="@string/incident_icon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/v_separator_left_fb"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tv_time_home" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_time_home"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/v_separator_left_fb"
+        app:layout_constraintTop_toBottomOf="@id/iv_incident_icon_home_fb"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColor="?colorOnSurfaceVariant" />
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="40dp"
+        android:id="@+id/v_separator_left_fb"
+        app:layout_constraintStart_toEndOf="@id/iv_incident_icon_home_fb"
+        app:layout_constraintEnd_toStartOf="@id/tv_score_home_fb"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="?colorOnSurfaceVariant" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:id="@+id/tv_score_home_fb"
+        app:layout_constraintStart_toEndOf="@id/v_separator_left_fb"
+        app:layout_constraintEnd_toStartOf="@id/tv_player_name_fb"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:textColor="?colorOnSurface"
+        />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="14dp"
+        android:id="@+id/tv_player_name_fb"
+        app:layout_constraintStart_toEndOf="@id/tv_score_home_fb"
+        app:layout_constraintEnd_toStartOf="@id/tv_score_away_fb"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColor="?colorOnSurface"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:id="@+id/tv_score_away_fb"
+        app:layout_constraintStart_toEndOf="@id/tv_player_name_fb"
+        app:layout_constraintEnd_toStartOf="@id/v_separator_right_fb"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:textColor="?colorOnSurface"
+        />
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="40dp"
+        android:id="@+id/v_separator_right_fb"
+        app:layout_constraintStart_toEndOf="@id/tv_score_away_fb"
+        app:layout_constraintEnd_toStartOf="@id/iv_incident_icon_away_fb"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="?colorOnSurfaceVariant" />
+
+    <ImageView
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginHorizontal="16dp"
+        android:id="@+id/iv_incident_icon_away_fb"
+        android:contentDescription="@string/incident_icon"
+        app:layout_constraintStart_toEndOf="@id/v_separator_right_fb"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tv_time_away_fb" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_time_away_fb"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/v_separator_right_fb"
+        app:layout_constraintTop_toBottomOf="@id/iv_incident_icon_away_fb"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColor="?colorOnSurfaceVariant" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
